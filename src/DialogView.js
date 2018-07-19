@@ -3,16 +3,26 @@ import './App.css';
 
 export default class DialogViewItem extends Component{
 
-  onMsgClick = () =>{
-        const {onClick,item} = this.props;
-        if(onClick){
-          onClick(item);
-        }
+handleClose=()=>{
+    this.props.onCloseClick(false);
+}
+ render(){
+    const {isActive} = this.props;
+    if(!isActive){
+        return null
     }
-    render(){
-        const {item} = this.props;
-        return(
-           		<button className="btn" onClick={this.onMsgClick}>{item.btn}</button>
+    return(
+        <div className="fugai">
+            <div className="fg">
+                <div className="f">
+                    <button className="close" onClick={this.handleClose}>×</button>
+                    <button>修改</button>
+                    <button>删除</button>
+                    <button>添加</button>
+                    <button>全选</button>
+                </div>
+            </div>
+        </div>
         )
     }
 }

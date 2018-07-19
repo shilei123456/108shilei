@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import MessageItemView from './Message.js';
 import FootMessageItemView from './Button.js';
 import DialogViewM from './DialogView.js';
+import Tanchuang from './Tanchuang.js';
 import './App.css';
-const Img = require('./11.jpg')
-const icon1 = require('./1.png')
-const icon2 = require('./2.png')
-const icon3 = require('./3.png')
-const icon4 = require('./4.png')
+const Img = require('./Images/11.jpg')
+const icon1 = require('./Images/1.png')
+const icon2 = require('./Images/2.png')
+const icon3 = require('./Images/3.png')
+const icon4 = require('./Images/4.png')
+const icon5 = require('./Images/搜素.png')
+const icon6 = require('./Images/添加.png')
 class App extends Component {
 	constructor(props){
 		super(props);
@@ -52,92 +55,75 @@ class App extends Component {
 					con : '我'
 				}
 			],
-			DialogViewItemMess:[
-				{
-					btn:'全选'
-				},
-				{
-					btn:'添加'
-				},
-				{
-					btn:'删除'
-				},
-				{
-					btn:'修改'
-				}
-			],
-			showDailog : false
+			showDailog : false,
+			showTan : false
 		}
 	}
 
 	onItemClick = (message) =>{
 	   console.log(message);
-		
-		 this.setState({
-          showDailog : true,
-					
-        });
 	}
 
-  onDialogClick = (DialogViewItemMess) =>{
-     console.log(DialogViewItemMess.btn);
+	handleShowDialog = (isActive) => {
+		this.setState({ showDailog: isActive });
 	}
 
-	renderDailog = () => {
-    if(this.setState.showDailog){
-        // return <DialogViewM />
-				alert(11)
-    }
-    return null;
+
+	handleAddItem = (name1,con1,date1,isTan) => {
+    const newMessages = this.state.message.slice();
+    newMessages.unshift({
+           name:name1,
+			con:con1,
+			date:date1
+    });
+    this.setState({
+      message: newMessages,
+	  showTan:isTan
+    });
   }
+
+	handleShowTan = (isTan) => {
+		this.setState({ showTan : isTan})
+	}
 
 	rendMessages= () =>{
 		const msg=this.state.message.map((item,idx)=>{
-			return <MessageItemView key={idx} item={item} onClick={this.onItemClick} />
+			return <MessageItemView key={idx} item={item} onClick={this.onItemClick}  />
 		});
 		return msg;
 	}
 
 	rendFootMessages= () =>{
 		const Fmsg=this.state.FootMessage.map((item,idx)=>{
-			return <FootMessageItemView key={idx} item={item}  />
+			return <FootMessageItemView key={idx} item={item} onClick={this.handleShowDialog} />
 		});
 		return Fmsg;
-	}
-	
-	rendDialogViewMess= () =>{
-		const Dmsg=this.state.DialogViewItemMess.map((item,idx)=>{
-			return <DialogViewM key={idx} item={item} onClick={this.onDialogClick} />
-		});
-		return Dmsg;
 	}
 
   render() {
     return (
       <div className="App">
 			 <div className="content">
-
+					<div className="top">
+						<p>微信</p>
+						<img src={icon5} alt="图片无法加载" className="img1" />
+						<img src={icon6} alt="图片无法加载" className="img2" onClick={this.handleShowTan} />
+					</div>
 					<div className="main">
 						<div className="main-con">
 							<ul>
 								{this.rendMessages()}
 							</ul>
 					  </div>
-				  </div>
-
+				    </div>
 					<div className="foot">
 						<ul>
 						     { this.rendFootMessages() }
 						</ul>
-			    </div>
-
-					<div className="fugai">
-					   <div className="fg">
-							{ this.rendDialogViewMess() }
-						 </div>
-					</div>
-           
-				</div>
+			        </div>
+					<DialogViewM isActive={this.state.showDailog} onCloseClick={this.handleShowDialog}/>
+					<Tanchuang isTan={this.state.showTan}  onhandTanchuang={this.handleAddItem} />
+			  </div>
       </div>
     );
   }
