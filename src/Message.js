@@ -8,6 +8,9 @@ export default class MessageItem extends Component{
           onClick(item);
         }
     }
+    handleMore= ()=>{      
+       this.props.handleShow(true);
+    }
 render(){
     const {item} = this.props;
     return(
@@ -16,6 +19,7 @@ render(){
             <p id="name" className="name">{item.name}</p>
             <p id="con" className="con">{item.con}</p>
             <p id="date" className="date">{item.date}</p>
+            <button className="more" onClick={this.handleMore}>更多</button>
         </li>
     )
 }

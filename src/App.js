@@ -3,6 +3,7 @@ import MessageItemView from './Message.js';
 import FootMessageItemView from './Button.js';
 import DialogViewM from './DialogView.js';
 import Tanchuang from './Tanchuang.js';
+import MoreV from './More.js';
 import './App.css';
 const Img = require('./Images/11.jpg')
 const icon1 = require('./Images/1.png')
@@ -56,7 +57,8 @@ class App extends Component {
 				}
 			],
 			showDailog : false,
-			showTan : false
+			showTan : false,
+			showMore : false
 		}
 	}
 
@@ -68,10 +70,10 @@ class App extends Component {
 		this.setState({ showDailog: isActive });
 	}
 
-
 	handleAddItem = (name1,con1,date1,isTan) => {
     const newMessages = this.state.message.slice();
     newMessages.unshift({
+		   imga : Img,
            name:name1,
 			con:con1,
 			date:date1
@@ -85,10 +87,16 @@ class App extends Component {
 	handleShowTan = (isTan) => {
 		this.setState({ showTan : isTan})
 	}
+    
+	handleShowMore = (isMore) =>{
+		this.setState({
+			showMore:isMore
+		})
+	}
 
 	rendMessages= () =>{
 		const msg=this.state.message.map((item,idx)=>{
-			return <MessageItemView key={idx} item={item} onClick={this.onItemClick}  />
+			return <MessageItemView key={idx} item={item} onClick={this.onItemClick} handleShow={this.handleShowMore}  />
 		});
 		return msg;
 	}
@@ -123,6 +131,7 @@ class App extends Component {
 			        </div>
 					<DialogViewM isActive={this.state.showDailog} onCloseClick={this.handleShowDialog}/>
 					<Tanchuang isTan={this.state.showTan}  onhandTanchuang={this.handleAddItem} />
+					<MoreV isMore={this.state.showMore} onCloseMore={this.handleShowMore} />
 			  </div>
       </div>
     );
