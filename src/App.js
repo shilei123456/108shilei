@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
-import MessageItemView from './Message.js';
-import FootMessageItemView from './Button.js';
-import DialogViewM from './DialogView.js';
-import Tanchuang from './Tanchuang.js';
-import MoreV from './More.js';
+import MessageItemView from './Component/Message.js';
+import FootMessageItemView from './Component/Button.js';
+import DialogViewM from './Component/DialogView.js';
+import Tanchuang from './Component/Tanchuang.js';
+import MoreV from './Component/More.js';
 import './App.css';
-const Img = require('./Images/11.jpg')
-const icon1 = require('./Images/1.png')
-const icon2 = require('./Images/2.png')
-const icon3 = require('./Images/3.png')
-const icon4 = require('./Images/4.png')
-const icon5 = require('./Images/搜素.png')
-const icon6 = require('./Images/添加.png')
+const Img = require('./resource/11.jpg')
+const icon1 = require('./resource/1.png')
+const icon2 = require('./resource/2.png')
+const icon3 = require('./resource/3.png')
+const icon4 = require('./resource/4.png')
+const icon5 = require('./resource/搜素.png')
+const icon6 = require('./resource/添加.png')
 class App extends Component {
 	constructor(props){
 		super(props);
@@ -56,6 +56,7 @@ class App extends Component {
 					con : '我'
 				}
 			],
+			index:null,
 			showDailog : false,
 			showTan : false,
 			showMore : false
@@ -69,6 +70,12 @@ class App extends Component {
 	handleShowDialog = (isActive) => {
 		this.setState({ showDailog: isActive });
 	}
+
+	handleIndex = (idex) => {
+			this.setState({
+			index: idex
+			})
+		}
 
 	handleAddItem = (name1,con1,date1,isTan) => {
     const newMessages = this.state.message.slice();
@@ -94,16 +101,44 @@ class App extends Component {
 		})
 	}
 
+    handleMoreTop = () =>{
+		const { message} = this.state;
+		const newMessage= message.slice();
+		const arr1= newMessage.splice(this.state.index,1);
+		newMessage.unshift(arr1[0]);
+		this.setState({
+			message : newMessage
+		});
+	}
+
+   handleMoreDel = () =>{
+	   const { message } = this.state;
+	   const newMessage = message.slice();
+	   newMessage.splice(this.state.index,1);
+	   this.setState({
+		   message:newMessage
+	   });
+   }
+
 	rendMessages= () =>{
 		const msg=this.state.message.map((item,idx)=>{
-			return <MessageItemView key={idx} item={item} onClick={this.onItemClick} handleShow={this.handleShowMore}  />
+			return <MessageItemView 
+			itemIndex={idx} 
+			key={idx} 
+			item={item} 
+			MyIndex={this.handleIndex} 
+			onClick={this.onItemClick} 
+			handleShow={this.handleShowMore}/>
 		});
 		return msg;
 	}
 
 	rendFootMessages= () =>{
 		const Fmsg=this.state.FootMessage.map((item,idx)=>{
-			return <FootMessageItemView key={idx} item={item} onClick={this.handleShowDialog} />
+			return <FootMessageItemView 
+			key={idx} 
+			item={item} 
+			onClick={this.handleShowDialog} />
 		});
 		return Fmsg;
 	}
@@ -129,9 +164,20 @@ class App extends Component {
 						     { this.rendFootMessages() }
 						</ul>
 			        </div>
-					<DialogViewM isActive={this.state.showDailog} onCloseClick={this.handleShowDialog}/>
-					<Tanchuang isTan={this.state.showTan}  onhandTanchuang={this.handleAddItem} />
-					<MoreV isMore={this.state.showMore} onCloseMore={this.handleShowMore} />
+
+					<DialogViewM 
+					isActive={this.state.showDailog}
+					 onCloseClick={this.handleShowDialog}/>
+
+					<Tanchuang 
+					isTan={this.state.showTan}  
+					onhandTanchuang={this.handleAddItem}/>
+
+					<MoreV 
+					isMore={this.state.showMore}  
+					onCloseMore={this.handleShowMore} 
+					onhandleTop={this.handleMoreTop} 
+					onhandleDel={this.handleMoreDel}/>
 			  </div>
       </div>
     );

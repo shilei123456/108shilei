@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import '../App.css';
 
 export default class MessageItem extends Component{
     onMsgClick = () =>{
@@ -8,11 +8,13 @@ export default class MessageItem extends Component{
           onClick(item);
         }
     }
-    handleMore= ()=>{      
-       this.props.handleShow(true);
+    handleMore= ()=>{   
+        this.props.handleShow(true);
+        this.props.MyIndex(this.props.itemIndex);
     }
 render(){
     const {item} = this.props;
+    
     return(
         <li className="item" onClick={this.onMsgClick}>
             <img className="image" src={item.imga} alt="图片" />

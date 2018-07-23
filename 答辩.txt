@@ -1,5 +1,0 @@
-1.第一天对于css中的flex布局不太懂。
-2.在react官网看到Function Component这种形式，这几天讲的都是class Component,这两种形式适合在什么样的情况下使用。
-3.构造函数里面super(props);不懂什么意思。
-4.构造函数里面this.state的作用是什么。
-5.typeof 一个数组  为什么会返回一个对象
