@@ -14,7 +14,7 @@ export default class MessageItem extends Component{
     }
 render(){
     const {item} = this.props;
-    
+    console.log(item);
     return(
         <li className="item" onClick={this.onMsgClick}>
             <img className="image" src={item.imga} alt="图片" />
