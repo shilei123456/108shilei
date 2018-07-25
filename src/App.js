@@ -1,20 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
+import Weixin from './Container/Weixin.js';
 import './App.css';
-import Nav from './Component/Nav/Nav.js';
-import Content from './Component/Content/Content.js';
-import Bottom from './Component/Bottom/Bottom.js';
-class App extends Component {
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import rootReducer  from './reducers/'
+const store = createStore(rootReducer)
+
+export default class App extends React.Component {
   render() {
     return (
-      <div className="App">
-        <div className="app">
-				  <Nav/>
-          <Content/>
-          <Bottom/>
-			  </div>
-      </div>
-    );
+            <Provider store={store}>
+            <Weixin />
+            </Provider>
+    )
   }
 }
-
-export default App;
