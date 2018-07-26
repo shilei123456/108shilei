@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+// import { bindActionCreators } from 'redux'
 import MessageItemView from '../Component/Message.js';
 import FootMessageItemView from '../Component/Button.js';
 import DialogViewM from '../Component/DialogView.js';
 import Tanchuang from '../Component/Tanchuang.js';
 import MoreV from '../Component/More.js';
-import additem from '../actions/index.js';
+import * as todoActionsC from '../actions/index.js';
 import '../App.css';
-const Img = require('../resource/11.jpg')
 const icon1 = require('../resource/1.png')
 const icon2 = require('../resource/2.png')
 const icon3 = require('../resource/3.png')
@@ -18,77 +18,32 @@ class Weixin extends Component {
 	constructor(props){
 		super(props);
 		this.state={
-			message : [
-				{
-					imga : Img,
-					name : '小明',
-					con : '好好学习,天天向上',
-					date : '2018-7-11'
-				},
-				{
-					imga : Img,
-					name : '王老吉',
-					con : '怕上火就喝王老吉',
-					date : '2018-7-18'
-				},
-				{
-					imga : Img,
-					name : '小花',
-					con : '美啦美啦美啦',
-					date : '2018-7-18'
-				},
-				{
-					imga : Img,
-					name : '河大青年',
-					con : '河北',
-					date : '2018-7-10'
-				}
-			],
 			FootMessage:[
-				{imgb : icon1,
+				{   imgb : icon1,
 					con : '微信'
 				},
-				{imgb : icon2,
+				{   imgb : icon2,
 					con : '通讯录'
 				},
-				{imgb : icon3,
+				{   imgb : icon3,
 					con : '发现'
 				},
-				{imgb : icon4,
+				{   imgb : icon4,
 					con : '我'
 				}
 			],
 			index:null,
-			showDailog : false,
-			showTan : false,
-			showMore : false
+			 showDailog : false,
+			showTan:false
 		}
 	}
 	
-	handleShowDialog = (isActive) => {
-		this.setState({ showDailog: isActive });
-	}
-
-	handleIndex = (idex) => {
-			this.setState({
-			index: idex
-			})
-		}
-
-  handleAddItem=(name1,con1,date1,isTan)=>{
-	  const {dispatch}=this.props;
-	  const {action}=additem(name1,con1,date1,isTan);
-	  dispatch(action);
-  }
-
 	handleShowTan = (isTan) => {
-		this.setState({ showTan : isTan})
+		this.setState({ showTan : isTan});
 	}
     
 	handleShowMore = (isMore) =>{
-		this.setState({
-			showMore:isMore
-		})
+		this.setState({ showDailog :!isMore})
 	}
 
     handleMoreTop = () =>{
@@ -110,14 +65,12 @@ class Weixin extends Component {
 	   });
    }
 
-	rendMessages= () =>{
-		const msg=this.state.message.map((item,idx)=>{
+	rendMessages= (MessageList,Dialog) =>{
+		const msg=MessageList.list.map((item,idx)=>{
 			return <MessageItemView 
 			itemIndex={idx} 
 			key={idx} 
 			item={item} 
-			MyIndex={this.handleIndex} 
-			onClick={this.onItemClick} 
 			handleShow={this.handleShowMore}/>
 		});
 		return msg;
@@ -135,6 +88,7 @@ class Weixin extends Component {
 
   render() {
 	  const {dispatch} = this.props;
+	  const { MessageList,Dialog } = this.props;
     return (
       <div className="App">
 			 <div className="content">
@@ -146,7 +100,7 @@ class Weixin extends Component {
 					<div className="main">
 						<div className="main-con">
 							<ul>
-								{this.rendMessages()}
+								{this.rendMessages(MessageList,Dialog)}
 							</ul>
 					  </div>
 				    </div>
@@ -162,11 +116,12 @@ class Weixin extends Component {
 
 					<Tanchuang 
 					dispatch={dispatch}
-					isTan={this.state.showTan}  
+					isTan={this.state.showTan} 
+					onhandleTan={this.handleShowTan} 
 					/>
 
 					<MoreV 
-					isMore={this.state.showMore}  
+					isMore={this.state.showDailog}  
 					onCloseMore={this.handleShowMore} 
 					onhandleTop={this.handleMoreTop} 
 					onhandleDel={this.handleMoreDel}/>
@@ -176,8 +131,12 @@ class Weixin extends Component {
   }
 }
 function mapStateToProps(state,ownProps){
-  const props = { message:null };
-  props.message = state.message;
-  return props;
+  const {MessageList,Dialog} = state;
+  return {MessageList,Dialog};
 }
+// function mapDispatchToProps(dispatch){
+//  return{
+// 	 todoActions:bindActionCreators(todoActionsC,dispatch)
+//  }
+// ,mapDispatchToProps}
 export default  connect(mapStateToProps)(Weixin);

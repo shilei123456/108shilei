@@ -1,15 +1,21 @@
 import React, { Component } from 'react';
 import '../App.css';
+import { connect } from 'react-redux';
 import additem from '../actions/index.js';
-export default class TanchuangView extends Component{
+class TanchuangView extends Component{
 
 handSubmit=()=>{
-    // this.props.onhandTanchuang(this.refs.input.value,this.refs.input1.value,this.refs.input2.value,false);
     const {dispatch}=this.props;
-    const action=additem(this.refs.input.value,this.refs.input1.value,this.refs.input2.value,false);
+    const action=additem(this.refs.input.value,this.refs.input1.value,this.refs.input2.value);
     dispatch(action);
+    this.refs.input.value="";
+    this.refs.input1.value="";
+    this.refs.input2.value="";
+
 }
  render(){
+    // const {dispatch} = this.props;
+	// const { Dialog } = this.props;
     const {isTan} = this.props;
     if(!isTan){
         return null
@@ -28,3 +34,13 @@ handSubmit=()=>{
         )
     }
 }
+function mapStateToProps(state,ownProps){
+  const {Dialog} = state;
+  return {Dialog};
+}
+// function mapDispatchToProps(dispatch){
+//  return{
+// 	 todoActions:bindActionCreators(todoActionsC,dispatch)
+//  }
+// ,mapDispatchToProps}
+export default  connect(mapStateToProps)(TanchuangView);

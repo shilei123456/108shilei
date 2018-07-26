@@ -1,12 +1,11 @@
-import { ADD_ITEM,ZHIDING,DELETE} from '../const/ActionTypes.js';
+import { ADD_ITEM,ZHIDING,DELETE,DIALOG,SHOW} from '../const/ActionTypes.js';
 
-export default function additem(text0,text1,text2,text3){
+export default function additem(text0,text1,text2){
     return({
        text0,
        text1,
        text2,
-       text3,
-       type: ADD_ITEM,
+       type: ADD_ITEM
     })
 }
 export function handleTop(idx){
@@ -15,8 +14,15 @@ export function handleTop(idx){
         idx
     })
 }
-export function handleDelete(idx){
+export function show(tet){
      return({
-         type:DELETE
+         type:SHOW,
+         tet
+     })
+}
+export function DialogShow(isActive){
+     return({
+         type:DIALOG,
+         isActive
      })
 }

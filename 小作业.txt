@@ -1,0 +1,16 @@
+组件：可以分为容器组件和UI组件
+      UI组件只负责UI的呈现，不带任何业务逻辑，没有状态（不能使用this.state），所有数据都由参数this.props提供
+      容器组件负责管理数据和业务逻辑，不负责UI呈现
+store 所有数据都应存放在这个里面
+reducer里面也有数据只是暂时用，最终还是归还于store里面
+
+connect用于从UI组件生成容器组件，就是将这两种组件连接起来
+connect接受两个参数mapStateToProps和mapDispatchToProps
+mapStateToProps负责负责输入逻辑，即将state映射到UI组件
+mapDispatchToProps负责输出逻辑，即将用户对UI组件的操作映射成Action
+
+action对象是行为的描述会有一个字符串类型的type字段来表示将要执行的动作（必须要有）
+需要传递给应用的其他数据信息，数据形式可以自定义
+最终返回一个对象。
+
+provider connect方法生成容器组件以后，需要让容器组件拿到state对象，才能生成UI组件的参数，provider组件可以做到

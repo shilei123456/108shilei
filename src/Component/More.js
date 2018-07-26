@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import '../App.css';
-
+// import { connect } from 'react-redux';
 export default class MoreView extends Component{
 
 handleClose = () =>{
-    this.props.onCloseMore(false);
+    this.props.onCloseMore(true);
 }
 
 handleT = () =>{
@@ -14,9 +14,10 @@ handleT = () =>{
 handleD = () =>{
     this.props.onhandleDel();
 }
-
     render(){
-        const {isMore} = this.props
+        // const {dispatch} = this.props;
+	    // const { MessageList,Dialog } = this.props;
+       const {isMore} = this.props;
         if(!isMore){
             return null;
         }
@@ -34,3 +35,13 @@ handleD = () =>{
         )
     }
 }
+// function mapStateToProps(state,ownProps){
+//     const {MessageList,Dialog} = state;
+//   return {MessageList,Dialog};
+// }
+// // function mapDispatchToProps(dispatch){
+// //  return{
+// // 	 todoActions:bindActionCreators(todoActionsC,dispatch)
+// //  }
+// // ,mapDispatchToProps}
+// export default  connect(mapStateToProps)(MoreView);
