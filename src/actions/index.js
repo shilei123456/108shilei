@@ -1,6 +1,6 @@
-import { ADD_ITEM,ZHIDING,DELETE,DIALOG,SHOW} from '../const/ActionTypes.js';
+import { ADD_ITEM,SHOWTAN,SHOWMORE} from '../const/ActionTypes.js';
 
-export default function additem(text0,text1,text2){
+export  function additem(text0,text1,text2){
     return({
        text0,
        text1,
@@ -8,21 +8,16 @@ export default function additem(text0,text1,text2){
        type: ADD_ITEM
     })
 }
-export function handleTop(idx){
-    return({
-        type:ZHIDING,
-        idx
-    })
-}
-export function show(tet){
+export function showTan(tet){
      return({
-         type:SHOW,
+         type:SHOWTAN,
          tet
+         
      })
 }
-export function DialogShow(isActive){
+export function showMore(text){
      return({
-         type:DIALOG,
-         isActive
+         text,
+          type:SHOWMORE
      })
 }

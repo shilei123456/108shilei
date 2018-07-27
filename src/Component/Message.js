@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import '../App.css';
-import show from '../actions/index.js';
 export default class MessageItem extends Component{
     onMsgClick = () =>{
         const {onClick,item} = this.props;
@@ -9,7 +8,7 @@ export default class MessageItem extends Component{
         }
     }
     handleMore= ()=>{   
-     this.props.handleShow(false);
+     this.props.onhandleShowMore(false);
     }
 render(){
     const {item} = this.props;

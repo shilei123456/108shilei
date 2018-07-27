@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux'
+import { bindActionCreators } from 'redux'
 import MessageItemView from '../Component/Message.js';
 import FootMessageItemView from '../Component/Button.js';
 import DialogViewM from '../Component/DialogView.js';
 import Tanchuang from '../Component/Tanchuang.js';
 import MoreV from '../Component/More.js';
-import * as todoActionsC from '../actions/index.js';
+
+import * as todoActionCreators from '../actions/index.js';
 import '../App.css';
 const icon1 = require('../resource/1.png')
 const icon2 = require('../resource/2.png')
@@ -32,20 +33,23 @@ class Weixin extends Component {
 					con : '我'
 				}
 			],
-			index:null,
-			 showDailog : false,
-			showTan:false
+			index:null
 		}
 	}
 	
-	handleShowTan = (isTan) => {
-		this.setState({ showTan : isTan});
+	handleShowTan = () => {
+		const {todoActions}=this.props;
+		todoActions.showTan(false);
 	}
     
-	handleShowMore = (isMore) =>{
-		this.setState({ showDailog :!isMore})
+	handleShowMore = () =>{
+		const {todoActions}=this.props;
+		todoActions.showMore(false);
 	}
-
+    handleCloseMore=()=>{
+		const {todoActions}=this.props;
+		todoActions.showMore(true);
+	}
     handleMoreTop = () =>{
 		const { message} = this.state;
 		const newMessage= message.slice();
@@ -69,9 +73,9 @@ class Weixin extends Component {
 		const msg=MessageList.list.map((item,idx)=>{
 			return <MessageItemView 
 			itemIndex={idx} 
+		    onhandleShowMore ={this.handleShowMore}
 			key={idx} 
-			item={item} 
-			handleShow={this.handleShowMore}/>
+			item={item} />
 		});
 		return msg;
 	}
@@ -87,7 +91,7 @@ class Weixin extends Component {
 	}
 
   render() {
-	  const {dispatch} = this.props;
+	  const { todoActions } = this.props;
 	  const { MessageList,Dialog } = this.props;
     return (
       <div className="App">
@@ -115,14 +119,12 @@ class Weixin extends Component {
 					 onCloseClick={this.handleShowDialog}/>
 
 					<Tanchuang 
-					dispatch={dispatch}
-					isTan={this.state.showTan} 
-					onhandleTan={this.handleShowTan} 
+					todoActions={todoActions}
+					// onhandleTan={this.handleShowTan} 
 					/>
 
 					<MoreV 
-					isMore={this.state.showDailog}  
-					onCloseMore={this.handleShowMore} 
+				    onCloseMore={this.handleCloseMore}
 					onhandleTop={this.handleMoreTop} 
 					onhandleDel={this.handleMoreDel}/>
 			  </div>
@@ -134,9 +136,9 @@ function mapStateToProps(state,ownProps){
   const {MessageList,Dialog} = state;
   return {MessageList,Dialog};
 }
-// function mapDispatchToProps(dispatch){
-//  return{
-// 	 todoActions:bindActionCreators(todoActionsC,dispatch)
-//  }
-// ,mapDispatchToProps}
-export default  connect(mapStateToProps)(Weixin);
+function mapDispatchToProps(dispatch){
+  return {
+    todoActions: bindActionCreators(todoActionCreators, dispatch)
+  }
+}
+export default  connect(mapStateToProps,mapDispatchToProps)(Weixin);

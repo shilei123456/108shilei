@@ -1,24 +1,25 @@
 import React, { Component } from 'react';
 import '../App.css';
-// import { connect } from 'react-redux';
-export default class MoreView extends Component{
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as todoActionCreators from '../actions/index.js';
+class MoreView extends Component{
 
 handleClose = () =>{
     this.props.onCloseMore(true);
 }
 
-handleT = () =>{
-    this.props.onhandleTop();
-}
+// handleT = () =>{
+//     this.props.onhandleTop();
+// }
 
-handleD = () =>{
-    this.props.onhandleDel();
-}
+// handleD = () =>{
+//     this.props.onhandleDel();
+// }
     render(){
-        // const {dispatch} = this.props;
-	    // const { MessageList,Dialog } = this.props;
-       const {isMore} = this.props;
-        if(!isMore){
+        const {todoActions} = this.props;
+	    const {Dialog} = this.props;
+        if(Dialog.showMore){
             return null;
         }
         return(
@@ -35,13 +36,13 @@ handleD = () =>{
         )
     }
 }
-// function mapStateToProps(state,ownProps){
-//     const {MessageList,Dialog} = state;
-//   return {MessageList,Dialog};
-// }
-// // function mapDispatchToProps(dispatch){
-// //  return{
-// // 	 todoActions:bindActionCreators(todoActionsC,dispatch)
-// //  }
-// // ,mapDispatchToProps}
-// export default  connect(mapStateToProps)(MoreView);
+function mapStateToProps(state,ownProps){
+    const {MessageList,Dialog} = state;
+  return {MessageList,Dialog};
+}
+function mapDispatchToProps(dispatch){
+  return {
+    todoActions: bindActionCreators(todoActionCreators, dispatch)
+  }
+}
+export default  connect(mapStateToProps,mapDispatchToProps)(MoreView);

@@ -1,23 +1,22 @@
 import React, { Component } from 'react';
 import '../App.css';
 import { connect } from 'react-redux';
-import additem from '../actions/index.js';
+import { bindActionCreators } from 'redux';
+import * as todoActionCreators from '../actions/index.js';
 class TanchuangView extends Component{
 
 handSubmit=()=>{
-    const {dispatch}=this.props;
-    const action=additem(this.refs.input.value,this.refs.input1.value,this.refs.input2.value);
-    dispatch(action);
+    const {todoActions}=this.props;
+    todoActions.additem(this.refs.input.value,this.refs.input1.value,this.refs.input2.value);
+    todoActions.showTan(true);
     this.refs.input.value="";
     this.refs.input1.value="";
     this.refs.input2.value="";
-
 }
  render(){
-    // const {dispatch} = this.props;
-	// const { Dialog } = this.props;
-    const {isTan} = this.props;
-    if(!isTan){
+    const { todoActions } = this.props;
+	const { MessageList,Dialog } = this.props;
+    if(Dialog.showDailog){
         return null
     }
     return(
@@ -35,12 +34,12 @@ handSubmit=()=>{
     }
 }
 function mapStateToProps(state,ownProps){
-  const {Dialog} = state;
-  return {Dialog};
+    const {MessageList,Dialog} = state;
+  return {MessageList,Dialog};
 }
-// function mapDispatchToProps(dispatch){
-//  return{
-// 	 todoActions:bindActionCreators(todoActionsC,dispatch)
-//  }
-// ,mapDispatchToProps}
-export default  connect(mapStateToProps)(TanchuangView);
+function mapDispatchToProps(dispatch){
+  return {
+    todoActions: bindActionCreators(todoActionCreators, dispatch)
+  }
+}
+export default  connect(mapStateToProps,mapDispatchToProps)(TanchuangView);
