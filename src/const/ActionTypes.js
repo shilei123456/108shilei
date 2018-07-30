@@ -1,6 +1,1 @@
 export const ADD_ITEM = 'ADD_ITEM'
-export const ZHIDING = 'ZHIDING'
-export const DELETE = 'DELETE'
-export const DIALOG = 'DIALOG'
-export const SHOWTAN = 'SHOWTAN'
-export const SHOWMORE='SHOWMORE'

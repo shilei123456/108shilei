@@ -1,0 +1,12 @@
+.Button-left{
+    float: left;
+}
+.Button-left  Button{
+    margin-left: 10px;
+}
+.Button-left Button:nth-child(2){
+    background: gray;
+}
+.Button-right{
+    float: right;
+}

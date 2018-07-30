@@ -1,12 +1,11 @@
-import React from 'react';
-import Weixin from './Container/Weixin.js';
+import React, { Component } from 'react';
 import './App.css';
+import Op from './container/Op.js';
 import { createStore,compose,applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import rootReducer  from './reducers/'
+import rootReducer  from './reducers';
 import { createLogger } from 'redux-logger';
 const logger = createLogger();
-
 const store = createStore(
   rootReducer,
   compose(
@@ -14,12 +13,12 @@ const store = createStore(
   )
 )
 
-export default class App extends React.Component {
+export default class App extends Component {
   render() {
     return (
-            <Provider store={store}>
-             <Weixin />
-            </Provider>
-    )
+      <Provider store={store}>
+        <Op/>
+      </Provider>
+    );
   }
 }

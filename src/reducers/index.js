@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux';
-import MessageList from './Message.js';
-import Dialog from './Dialog.js';
-
+import MessageList from './message.js';
+import MessageListxia from './messagexia.js';
+import MessageTop from './messageTop.js';
 export default combineReducers({
   MessageList,
-  Dialog
+  MessageListxia,
+  MessageTop
 });
 
