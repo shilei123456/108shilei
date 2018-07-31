@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Avatar } from 'antd';
-import { Input } from 'antd';
+import { Input,Icon } from 'antd';
 import {Button} from 'antd';
 import { connect } from 'react-redux';
 import './TopBar.css';
@@ -26,7 +26,7 @@ class TopBar extends Component{
                     <p>最后登录时间 : {MessageTop.message.lastTime}</p>
                 </div>
                 <div className="message-right">
-                    <p>手机号码 : 18731213995</p>
+                    <p>手机号码 : 18731213995<Icon type="file-text" className="icon"/></p>
                     <p>微信号码 : <Input placeholder="xiaoniangao" className="inp"/><Button className="tj1">提交</Button></p>
                     <p>备注 : <Input placeholder="xiaoniangao" className="inp"/><Button  className="tj2">提交</Button></p>
                 </div>

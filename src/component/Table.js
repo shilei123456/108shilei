@@ -1,12 +1,30 @@
 import React, { Component } from 'react';
 import { Table } from 'antd';
+import axios from 'axios'; 
 import { connect } from 'react-redux';
 import './Table.css';
 class Tables extends Component{
+    constructor(props){
+         super(props);
+         this.state={promple:[]}
+    }
+    componentWillMount() {
+     axios({
+        method: 'POST',
+        url: 'http://xly-wkop.xiaoniangao.cn/getLessonInfo/',
+        data:{
+            mid:'001'
+        }
+        }).then(res => {
+            console.log(res);
+         
+        }).catch(err => {
+            console.log(err);
+        });
+        }   
     render(){
          const { MessageList,MessageListxia} = this.props;
         return(
-           
             <div className="tables">
              <div className="tanle-top">
               <h4><strong>在学课程</strong></h4>

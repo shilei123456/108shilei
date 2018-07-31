@@ -5,11 +5,20 @@
 }
 .tanle-top h4{
     float: left;
-    margin-left: 10px;
+    margin-left: 11px;
 }
 td{
-    border: 1px solid lightcyan;
+    border: 1px solid lightblue;
 }
-th:nth-child(1){
-    background: gray;
+th{
+    background: gray
+}
+.ant-table-thead>tr>th{
+     background: gray
+}
+.orange{
+    color: orange;
+}
+.red{
+    color: red;
 }

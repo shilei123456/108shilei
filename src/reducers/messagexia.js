@@ -1,4 +1,6 @@
 import { ADD_ITEM } from '../const/ActionTypes'
+import React, { Component } from 'react';
+import "../component/Table.css";
 const initialMessage={
         dataSource : [{
             key: '1',
@@ -48,6 +50,16 @@ const initialMessage={
             title: '满意度',
             dataIndex: 'manyidu',
             key: 'manyidu',
+            render:text=>{
+              let manyi=parseFloat(text);
+              if(manyi>=90){
+                return <div className="orange">{text}</div>
+              }else if(manyi<80){
+                return <div className="red">{text}</div>
+              }else{
+                return <div>{text}</div>
+              }
+            }
             }]
 }
 export default function MessageListxia(state=initialMessage,action){

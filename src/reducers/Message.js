@@ -1,4 +1,7 @@
-import { ADD_ITEM } from '../const/ActionTypes';
+import { ADD_ITEM,FETCH_GITHUB_USER } from '../const/ActionTypes';
+import React, { Component } from 'react';
+import { Icon } from 'antd';
+import "../component/Table.css";
 const img1=require('../source/人.png');
 const initialMessage={
         dataSource : [{
@@ -62,6 +65,7 @@ const initialMessage={
             title: '班级',
             dataIndex: 'banji',
             key: 'banji',
+            render: text =>{return (<div><Icon type="info-circle" />{text}</div>)} 
             }, {
             title: '课程状态',
             dataIndex: 'status',
@@ -74,6 +78,7 @@ const initialMessage={
             title: '老师',
             dataIndex: 'teacher',
             key: 'teacher',
+            render: text =>{return (<div><Icon type="user" />{text}</div>)}
             }, {
             title: '上课率',
             dataIndex: 'shangkelv',
@@ -82,10 +87,30 @@ const initialMessage={
             title: '作业提交率',
             dataIndex: 'tijiaolv',
             key: 'tijiaolv',
+            render:text=>{
+              let zuoye=parseFloat(text);
+              if(zuoye>90){
+                return <div className="orange">{text}</div>
+              }else if(zuoye<80){
+                return <div className="red">{text}</div>
+              }else{
+                return <div>{text}</div>
+              }
+            }
             },{
             title: '被点评情况',
             dataIndex: 'dianping',
             key: 'dianping',
+            render: text=>{
+              let dianping=parseFloat(text);
+              if(dianping>90){
+                return <div className="orange">{text}</div>
+              }else if(dianping<80){
+                return <div className="red">{text}</div>
+              }else{
+                return <div>{text}</div>
+              }
+            }
             }, {
             title: '打卡率',
             dataIndex: 'dakalv',
@@ -94,6 +119,16 @@ const initialMessage={
             title: '满意度',
             dataIndex: 'manyidu',
             key: 'manyidu',
+            render:text=>{
+              let manyi=parseFloat(text);
+              if(manyi>90){
+                return <div className="orange">{text}</div>
+              }else if(manyi<80){
+                return <div className="red">{text}</div>
+              }else{
+                return <div>{text}</div>
+              }
+            }
             }]
 }
 export default function MessageList(state=initialMessage,action){
