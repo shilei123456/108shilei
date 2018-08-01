@@ -1,66 +1,101 @@
-import { ADD_ITEM } from '../const/ActionTypes'
+import { ADD_ITEM } from '../const/ActionTypes.js'
 import React, { Component } from 'react';
+import { Icon } from 'antd';
 import "../component/Table.css";
 const initialMessage={
-        dataSource : [{
-            key: '1',
-            banji: '高级班',
-            status: "已结束",
-            time: '2017-04-30',
-            teacher: '小白老师',
-            shangkelv: '21/21',
-            tijiaolv:'8/10',
-            dianping:'10/10',
-            dakalv:'5/21',
-            manyidu:'90.00%'
-            }],
-        columns : [{
-            title: '班级',
-            dataIndex: 'banji',
-            key: 'banji',
-            }, {
-            title: '课程状态',
-            dataIndex: 'status',
-            key: 'status',
-            }, {
-            title: '开课时间',
-            dataIndex: 'time',
-            key: 'time',
-            },{
-            title: '老师',
-            dataIndex: 'teacher',
-            key: 'teacher',
-            }, {
-            title: '上课率',
-            dataIndex: 'shangkelv',
-            key: 'shangkelv',
-            }, {
-            title: '作业提交率',
-            dataIndex: 'tijiaolv',
-            key: 'tijiaolv',
-            },{
-            title: '被点评情况',
-            dataIndex: 'dianping',
-            key: 'dianping',
-            }, {
-            title: '打卡率',
-            dataIndex: 'dakalv',
-            key: 'dakalv',
-            }, {
-            title: '满意度',
-            dataIndex: 'manyidu',
-            key: 'manyidu',
-            render:text=>{
-              let manyi=parseFloat(text);
-              if(manyi>=90){
-                return <div className="orange">{text}</div>
-              }else if(manyi<80){
-                return <div className="red">{text}</div>
-              }else{
-                return <div>{text}</div>
-              }
-            }
-            }]
+columns : [{
+    title: '班级',
+    dataIndex: 'classInfo',
+    key: 'classInfo',
+    align: 'center',
+    render: text => {
+    return <div>
+            <Icon type="exclamation-circle" />
+            <span>{text.name}</span>
+           </div>}
+  }, {
+    title: '课程状态',
+    dataIndex: 'status',
+    key: 'status',
+    align: 'center'
+  }, {
+    title: '开课时间',
+    dataIndex: 'startTime',
+    key: 'startTime',
+    align: 'center'
+  },
+  {
+    title: '老师',
+    dataIndex: 'teacherInfo',
+    key: 'teacherInfo',
+    align: 'center',
+    render: text => {
+    return  <div>
+              <Icon type="user" />
+              <span>{text.nick}</span>
+            </div>}
+  },
+  {
+    title: '上课率',
+    dataIndex: 'enterRate',
+    key: 'enterRate',
+    align: 'center'
+  },
+  {
+    title: '作业提交率',
+    dataIndex: 'homeworkSubmitRate',
+    key: 'homeworkSubmitRate',
+    align: 'center',
+    render:text=>{
+      let num=parseInt(text, 10);
+      if(num<80){
+        return <span className="Red">{text}</span>
+      }else if(num>95){
+        return <span className="Orange">{text}</span>
+      }else{
+      return <span>{text}</span>
+      }
+      }
+  },
+  {
+    title: '被点评情况',
+    dataIndex: 'beCommenttedRate',
+    key: 'beCommenttedRate',
+    align: 'center',
+    render:text=>{
+      let num=parseInt(text, 10);
+      if(num<80){
+        return <span className="Red">{text}</span>
+      }else if(num>95){
+        return <span className="Orange">{text}</span>
+      }else{
+        return <span>{text}</span>
+      }
+      }
+  },
+  {
+    title: '打卡率',
+    dataIndex: 'signRate',
+    key: 'signRate',
+    align: 'center'
+  },
+  {
+    title: '满意度',
+    dataIndex: 'satisfyRate',
+    key: 'satisfyRate',
+    align: 'center',
+    render:text=>{
+      let num=parseInt(text, 10);
+      if(num<80){
+        return <span className="Red">{text}</span>
+      }else if(num>95){
+        return <span className="Orange">{text}</span>
+      }else{
+        return <span>{text}</span>
+      }
+      }
+  },
+]
 }
 export default function MessageListxia(state=initialMessage,action){
   switch(action.type){

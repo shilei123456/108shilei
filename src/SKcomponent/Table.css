@@ -1,4 +1,4 @@
-.tables{
+.tab{
     float: left;
     margin-top: 20px;
     width: 100%;
@@ -15,10 +15,4 @@ th{
 }
 .ant-table-thead>tr>th{
      background: gray
-}
-.Orange{
-    color: orange;
-}
-.Red{
-    color: red;
 }
