@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import {Button, Menu, Dropdown, Icon,Input } from 'antd';
+import { bindActionCreators } from 'redux';
+import * as actionCreators from '../actions';
+import { connect } from 'react-redux';
 import './ButtonList.css';
+import {fetchSeach} from '../actions/index.js';
 const menu = (
   <Menu>
     <Menu.Item>
@@ -15,9 +19,9 @@ const menu = (
   </Menu>
 );
 const Search = Input.Search;
-export default class ButtonList extends Component{
-    
+class ButtonList extends Component{  
     render(){
+        const { Actions } = this.props;
         return(
             <div className="main">
                 <div className="Button-left">
@@ -35,10 +39,22 @@ export default class ButtonList extends Component{
                     placeholder="input search text"
                     enterButton="搜索"
                     className="search"
-                    onSearch={value => console.log(value)}
+                    onSearch={value => Actions.fetchSeach(value)}
                     />
                 </div>
             </div>
         );
     }
 }
+function mapStateToProps(state,ownProps){
+  const {DAmessageTOP,DAmessage} = state;
+  return {DAmessageTOP,DAmessage};
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    Actions: bindActionCreators(actionCreators, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ButtonList)

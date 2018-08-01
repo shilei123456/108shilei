@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import MessageList from './message.js';
+import MessageList from './Message.js';
 import MessageListxia from './messagexia.js';
 import MessageTop from './messageTop.js';
 import DAmessageTOP from './damessageTop.js';
