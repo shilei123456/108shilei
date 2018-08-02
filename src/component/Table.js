@@ -1,32 +1,131 @@
 import React, { Component } from 'react';
 import { Table } from 'antd';
 import { connect } from 'react-redux';
+import { Icon } from 'antd';
+import { Link} from 'react-router';
 import './Table.css';
 import * as api from '../api/api';
+const initialMessage={
+columns : [{
+    title: '班级',
+    dataIndex: 'classInfo',
+    key: 'classInfo',
+    align: 'center',
+    render: text => {
+    return <div>
+            <Icon type="exclamation-circle" />
+            <span>{text.name}</span>
+            <Link to="/shangkexiangqing">{text.name}</Link>
+           </div>}
+  }, {
+    title: '课程状态',
+    dataIndex: 'status',
+    key: 'status',
+    align: 'center'
+  }, {
+    title: '开课时间',
+    dataIndex: 'startTime',
+    key: 'startTime',
+    align: 'center'
+  },
+  {
+    title: '老师',
+    dataIndex: 'teacherInfo',
+    key: 'teacherInfo',
+    align: 'center',
+    render: text => {
+    return  <div>
+              <Icon type="user" />
+              <span>{text.nick}</span>
+            </div>}
+  },
+  {
+    title: '上课率',
+    dataIndex: 'enterRate',
+    key: 'enterRate',
+    align: 'center'
+  },
+  {
+    title: '作业提交率',
+    dataIndex: 'homeworkSubmitRate',
+    key: 'homeworkSubmitRate',
+    align: 'center',
+    render:text=>{
+      let num=parseInt(text, 10);
+      if(num<80){
+        return <span className="Red">{text}</span>
+      }else if(num>95){
+        return <span className="Orange">{text}</span>
+      }else{
+      return <span>{text}</span>
+      }
+      }
+  },
+  {
+    title: '被点评情况',
+    dataIndex: 'beCommenttedRate',
+    key: 'beCommenttedRate',
+    align: 'center',
+    render:text=>{
+      let num=parseInt(text, 10);
+      if(num<80){
+        return <span className="Red">{text}</span>
+      }else if(num>95){
+        return <span className="Orange">{text}</span>
+      }else{
+        return <span>{text}</span>
+      }
+      }
+  },
+  {
+    title: '打卡率',
+    dataIndex: 'signRate',
+    key: 'signRate',
+    align: 'center'
+  },
+  {
+    title: '满意度',
+    dataIndex: 'satisfyRate',
+    key: 'satisfyRate',
+    align: 'center',
+    render:text=>{
+      let num=parseInt(text, 10);
+      if(num<80){
+        return <span className="Red">{text}</span>
+      }else if(num>95){
+        return <span className="Orange">{text}</span>
+      }else{
+        return <span>{text}</span>
+      }
+      }
+  },
+]
+}
 class Tables extends Component{
    componentDidMount(){
        const {dispatch}=this.props;
        api.fatchLesson(dispatch);
    }
     render(){
-         const { MessageList,MessageListxia} = this.props;
+         const { MessageList} = this.props;
+         console.log(this.props);
         return(
             <div className="tables">
              <div className="tanle-top">
               <h4><strong>在学课程</strong></h4>
-              <Table  className="" dataSource={MessageList.LessonsList} columns={MessageListxia.columns} />
+              <Table  className="" dataSource={MessageList.LessonsList} columns={initialMessage.columns} />
              </div>
              <div className="tanle-top">
               <h4><strong>历史数据</strong></h4>
-              <Table dataSource={MessageList.historyLessonsList} columns={MessageListxia.columns} />
+              <Table dataSource={MessageList.historyLessonsList} columns={initialMessage.columns} />
              </div>
             </div>
         );
     }
 }
 function mapStateToProps(state,ownProps){
-  const {MessageList,MessageListxia} = state;
-  return {MessageList,MessageListxia};
+  const {MessageList} = state;
+  return {MessageList};
 }
 
 export default connect(mapStateToProps)(Tables);

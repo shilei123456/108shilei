@@ -12,6 +12,8 @@ import TABLE from '../component/Table.js';
                <BUTTONLIST/>
                <TABLE/>
             </div>
+            
         );
+   
     }
 }
