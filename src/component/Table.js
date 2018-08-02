@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import { Table } from 'antd';
 import { connect } from 'react-redux';
-import { Icon } from 'antd';
+import { Icon,Popover } from 'antd';
 import { Link} from 'react-router';
 import './Table.css';
 import * as api from '../api/api';
+const content = (
+  <div>
+    <p>小白老师<br/>班级ID：98676<br/>负责员工：小白老师/76544/89745</p>
+  </div>
+);
 const initialMessage={
 columns : [{
     title: '班级',
@@ -35,7 +40,10 @@ columns : [{
     align: 'center',
     render: text => {
     return  <div>
-              <Icon type="user" />
+              
+              <Popover content={content}>
+                 <Icon type="user" />
+              </Popover>
               <span>{text.nick}</span>
             </div>}
   },
