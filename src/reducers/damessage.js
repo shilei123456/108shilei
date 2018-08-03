@@ -1,11 +1,12 @@
-import {FETCH_GITHUB_DANGAN_SUC,FETCH_GITHUB_SEACH_FAI} from '../const/ActionTypes.js'
+import {FETCH_STUDENT_INFO_SUC,FETCH_GITHUB_SEACH_FAI} from '../const/ActionTypes.js'
 const initialMessage={
   msg:[]
 }
 export default function DAmessage(state=initialMessage,action){
   switch(action.type){
-        case FETCH_GITHUB_DANGAN_SUC:
-            let msg = action.data;
+        case FETCH_STUDENT_INFO_SUC:
+         console.log(action);
+            let msg = action.response.data;
             return Object.assign({...state}, { msg })
             break;
         case FETCH_GITHUB_SEACH_FAI:

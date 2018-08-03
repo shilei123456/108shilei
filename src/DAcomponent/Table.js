@@ -3,6 +3,8 @@ import { Table } from 'antd';
 import './Table.css';
 import {Link } from 'react-router';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as actionCreators from '../actions';
 import * as api from '../api/api';
 const col={
     columns : [{
@@ -58,11 +60,14 @@ const col={
 }
 class Tables extends Component{
      componentDidMount(){
-       const {dispatch}=this.props;
-       api.fatchdDangAn(dispatch);
+       const {Actions}=this.props;
+      Actions.fetchStudentInfo(1);
+      //  const {dispatch}=this.props;
+      //  api.fatchdDangAn(dispatch);
    }
     render(){
         const { DAmessage} = this.props;
+      
         return(
             <div className="tab">
              <Table dataSource={DAmessage.msg} columns={col.columns} />
@@ -74,5 +79,9 @@ function mapStateToProps(state,ownProps){
   const {DAmessage} = state;
   return {DAmessage};
 }
-
-export default connect(mapStateToProps)(Tables);
+const mapDispatchToProps = dispatch => {
+  return {
+    Actions: bindActionCreators(actionCreators, dispatch)
+  }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Tables);

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Table } from 'antd';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as actionCreators from '../actions';
 import { Icon,Popover } from 'antd';
 import { Link} from 'react-router';
 import './Table.css';
@@ -111,17 +113,20 @@ columns : [{
 }
 class Tables extends Component{
    componentDidMount(){
-       const {dispatch}=this.props;
-       api.fatchLesson(dispatch);
+     const {Actions}=this.props;
+     Actions.fetchLessonInfo(330900002);
+    //  Actions.fetchUserInfo(1);
+    //  Actions.fetchStudentInfo(2);
+      //  const {dispatch}=this.props;
+      //  api.fatchLesson(dispatch);
    }
     render(){
          const { MessageList} = this.props;
-         console.log(this.props);
         return(
             <div className="tables">
              <div className="tanle-top">
               <h4><strong>在学课程</strong></h4>
-              <Table  className="" dataSource={MessageList.LessonsList} columns={initialMessage.columns} />
+              <Table dataSource={MessageList.LessonsList} columns={initialMessage.columns} />
              </div>
              <div className="tanle-top">
               <h4><strong>历史数据</strong></h4>
@@ -135,5 +140,9 @@ function mapStateToProps(state,ownProps){
   const {MessageList} = state;
   return {MessageList};
 }
-
-export default connect(mapStateToProps)(Tables);
+const mapDispatchToProps = dispatch => {
+  return {
+    Actions: bindActionCreators(actionCreators, dispatch)
+  }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Tables);

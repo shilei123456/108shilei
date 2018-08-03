@@ -38,7 +38,7 @@ export  function fatchLesson( next ) {
          }, 
     }).then(res => {
         next({
-            type:ActionTypes.FETCH_GITHUB_TABLE_SUC,
+            type:ActionTypes.FETCH_LESSON_INFO_SUC,
             data: res.data.data
         });
     }).catch(function(error){
@@ -63,7 +63,7 @@ export  function fatchdDangAn( next ) {
     }).then(res => {
         console.log(res);
         next({
-            type:ActionTypes.FETCH_GITHUB_DANGAN_SUC,
+            type:ActionTypes.FETCH_STUDENT_INFO_SUC,
             data: res.data.data
         });
     }).catch(function(error){
@@ -87,7 +87,7 @@ export  function fatchdShangke( next ) {
          }, 
     }).then(res => {
         next({
-            type:ActionTypes.FETCH_GITHUB_SHANGKE_SUC,
+            type:ActionTypes.FETCH_LEARN_INFO_SUC,
             data: res.data.data
         });
     }).catch(function(error){

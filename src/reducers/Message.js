@@ -1,4 +1,4 @@
-import {FETCH_GITHUB_TABLE_SUC} from '../const/ActionTypes.js'
+import {FETCH_LESSON_INFO_SUC} from '../const/ActionTypes.js'
 import React, { Component } from 'react';
 import { Icon } from 'antd';
 import "../component/Table.css";
@@ -9,9 +9,9 @@ const initialMessage={
 }
 export default function MessageList(state=initialMessage,action){
   switch(action.type){
-    case FETCH_GITHUB_TABLE_SUC:
-      let LessonsList = action.data.currentLessonsList;
-      let historyLessonsList = action.data.historyLessonsList;
+    case FETCH_LESSON_INFO_SUC:
+      let LessonsList = action.response.data.currentLessonsList;
+      let historyLessonsList = action.response.historyLessonsList;
       return Object.assign({...state},{ LessonsList, historyLessonsList })
     default:
     return state;

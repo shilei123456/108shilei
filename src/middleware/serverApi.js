@@ -46,6 +46,7 @@ export default store => next => action => {
 
   return callServerApi(endpoint, params)
     .then(res => {
+      console.log(res);
       next({
         type: `${type}_SUC`,
         response: res.data

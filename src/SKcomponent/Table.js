@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Table,Icon } from 'antd';
 import './Table.css';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as actionCreators from '../actions';
 import * as api from '../api/api';
 const initialMessage={
 columns : [{
@@ -85,8 +87,10 @@ columns : [{
 }
 class Tables extends Component{
      componentDidMount(){
-       const {dispatch}=this.props;
-       api.fatchdShangke(dispatch);
+       const {Actions}=this.props;
+      Actions.fetchLearnInfo(98676);
+      //  const {dispatch}=this.props;
+      //  api.fatchdShangke(dispatch);
    }
     render(){
         const {SKmessage} = this.props;
@@ -102,5 +106,9 @@ function mapStateToProps(state,ownProps){
   const { SKmessage} = state;
   return { SKmessage};
 }
-
-export default connect(mapStateToProps)(Tables);
+const mapDispatchToProps = dispatch => {
+  return {
+    Actions: bindActionCreators(actionCreators, dispatch)
+  }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Tables);
