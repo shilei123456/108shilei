@@ -123,7 +123,6 @@ class DataTables extends Component {
   rowKey = record => record.classInfo.id
 
   render() {
-    // console.log(this.props);
     const { lessonInfo: {
       currentLessonsList,
       historyLessonsList

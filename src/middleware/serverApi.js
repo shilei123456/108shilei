@@ -59,7 +59,7 @@ const serverApi = () => next => action => {
       const response = typeof (normailzerFun) !== 'undefined' ? normailzerFun(res.data) : res.data;
       next(actionWith({
         type: `${type}_SUC`,
-        __api:{endpoint,params},
+        __api:{endpoint,params,response:res.data},
         response: response
       }));
     })

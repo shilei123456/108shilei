@@ -13,15 +13,15 @@ const satisfiled = new schema.Entity('satisfiled',{
   idAttribute:'time'
 })
 
-const StuLibClass = new schema.Entity('StuLibClass', {}, {
-  idAttribute: 'id'
-});
-const StuLibTeacher = new schema.Entity('StuLibTeacher',{},{
-  idAttribute:'id'
-})
+// const StuLibClass = new schema.Entity('StuLibClass', {}, {
+//   idAttribute: 'id'
+// });
+// const StuLibTeacher = new schema.Entity('StuLibTeacher',{},{
+//   idAttribute:'id'
+// })
 const LessonInfo = new schema.Entity('LessonInfo', {
-   classInfo:StuLibClass,
-   teacherInfo:StuLibTeacher
+   classInfo:classes,
+   teacherInfo:teacher
 }, {
   idAttribute: 'id'
 });
