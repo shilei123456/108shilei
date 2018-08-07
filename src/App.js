@@ -1,20 +1,26 @@
 import React, { Component } from 'react';
-import { Provider } from 'react-redux'
 import './App.css';
-import configureStore from './store/configureStore'
-
-import { Router, browserHistory } from 'react-router'
-import routes from './routes'
-
-const store = configureStore()
-class App extends Component {
+import { createStore,compose,applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import serverApi from  './middleware/serverApi.js';
+import thunk from 'redux-thunk';
+// import Routes from './routes';
+import DianPing from './container/DianPing.js';
+import rootReducer  from './reducers';
+import { createLogger } from 'redux-logger';  
+const logger = createLogger();
+const store = createStore(
+  rootReducer,
+  compose(
+    applyMiddleware(thunk,serverApi,logger),
+  )
+)
+export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Router routes={routes} history={browserHistory} />
+        <DianPing />
       </Provider>
     );
   }
 }
-
-export default App;

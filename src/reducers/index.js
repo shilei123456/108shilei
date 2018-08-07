@@ -1,19 +1,16 @@
-import { combineReducers } from 'redux'
-import lessonInfo from './lessonInfo'
-import userInfo from './userInfo'
-import ui from './ui'
-import studentLib from './studentLib'
-import classesDetail from './classesDetail'
-import satisfied from './satisfied'
-import entities from './entities'
+import { combineReducers } from 'redux';
+import MessageList from './Message.js';
+import MessageTop from './messageTop.js';
+import DAmessage from './damessage.js';
+import SKmessage from './skmessage.js';
+import SatifyList from './satify.js';
+import DianPing from './dianping.js'
+export default combineReducers({
+  MessageList,
+  MessageTop,
+  DAmessage,
+  SKmessage,
+  SatifyList,
+  DianPing
+});
 
-const rootReducer = combineReducers({
-  entities,
-  lessonInfo,
-  userInfo,
-  studentLib,
-  classesDetail,
-  satisfied,
-  ui
-})
-export default rootReducer
