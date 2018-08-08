@@ -1,6 +1,7 @@
 import axios from 'axios';
 import * as ActionTypes from '../const/ActionTypes';
-
+import { normalize } from 'normalizr'
+import * as schemes from '../schemes'
 export function fetchUserInfo(mid) {
   return {
     SERVER_API: {
@@ -67,14 +68,16 @@ export function fetchSeach(value){
     value
   }
 }
-export function fetchDianPingInfo(token) {
+export function fetchDianPingInfo(token,isReviewed) {
     return {
       SERVER_API: {
         type: ActionTypes.FETCH_DianPing_INFO,
         endpoint: '/getHomeWork',
         params: {
-            token
-        }
+            token,
+            isReviewed
+        },
+        normailzerFun:response=> normalize(response.data, schemes.HOMEWORKLIST)
       }
     }
 }

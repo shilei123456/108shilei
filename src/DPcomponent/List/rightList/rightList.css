@@ -1,0 +1,20 @@
+.detail li{
+    list-style: none;
+    border-bottom:1px solid #ccc;
+    border-left: 1px solid #ccc;
+}
+ul{
+    list-style: none;
+}
+.message{
+    color: red;
+}
+.right{
+    float: right;
+    margin-right: -40px;
+}
+.tuihui{
+    float: right;
+    margin-right: -40px;
+    color: red;
+}

@@ -1,14 +1,4 @@
 .tabs{
-    width: 55%;
-    float: left;
-    margin-top: 40px
-}
-.leftTabs{
-    float: left;
     width: 100%;
-}
-.rightTabs{
-    float: right;
-    width: 43%;
-    margin-right: -330px
+    float: left;
 }
