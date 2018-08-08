@@ -39,17 +39,17 @@ render() {
         </TabPane>
         <TabPane tab="我的点评历史&nbsp;&nbsp;&nbsp;&nbsp;累计点评" key="2">
           <ul>
-          
+              <XueYuanList DianPing={DianPing} newdata={newdata}/>
           </ul>
         </TabPane>
         <TabPane tab="全部未点评" key="3">
           <ul>
-          
+               <XueYuanList DianPing={DianPing} newdata={newdata}/>
           </ul>
         </TabPane>
         <TabPane tab="全部已点评" key="4">
           <ul>
-          
+               <XueYuanList DianPing={DianPing} newdata={newdata}/>
           </ul>
         </TabPane>
       </Tabs>   
