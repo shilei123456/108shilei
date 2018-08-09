@@ -4,14 +4,18 @@ import XueYuanList from './List/xueyuanList.js';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import './Tabs.css';
-
 import * as actionCreators from '../actions/index';
 class TabsComponent extends Component {
     componentDidMount(){   
         const { Actions } = this.props;
-        const token = 1;
-        const isReviewed = 0
-        Actions.fetchDianPingInfo(token,isReviewed)
+        const token0 = 0;
+        const token1 = 1;
+        const isReviewed0 = 0;
+        const isReviewed1 = 1;
+        Actions.fetchDianPingInfo(token1,isReviewed0);
+        // Actions.fetchDianPingInfoMyHistory(token1,isReviewed1);
+        // Actions.fetchDianPingInfoAllWei(token0,isReviewed0);
+        // Actions.fetchDianPingInfoAllYi(token0,isReviewed1);
     }
 render() {
    const { DianPing,entities} = this.props;
@@ -19,11 +23,14 @@ render() {
       if(DianPing){
           newdata = DianPing.map(id=>{
           let DianPing = entities.homeworkList[id];
+          const _comments = DianPing.comments.map((item) => {
+            return entities.comments[item];
+           })
           return {
             ...DianPing,
             classInfo: entities.classes[DianPing.classInfo],
             author:entities.author[DianPing.author],
-            comments:entities.comments[DianPing.comments],
+            comments:_comments,
             teacherInfo:entities.teacher[DianPing.teacherInfo]
           }
       });

@@ -1,19 +1,52 @@
 import React, { Component } from 'react';
 import './rightList.css'
+import handleChangeTuiHui from '../../../actions/index.js'
 export default class rightList extends Component {
-  renderRemarkDetail = () => {
-    const { DianPing } = this.props;
-    console.log(DianPing)
+handleTuiHui = (id) =>{
+  handleChangeTuiHui(id);
+}
+
+renderRightList = () => {
+      const { item } = this.props;
+      const rightList = item.comments.map((value) => {
+        if(value.from == "author"){
+          return <li>
+                    <div className="content"> 
+                      <span>{ value.nick }mid:{ value.id }</span>
+                      <span>{ value.time }</span>
+                    </div>
+                      <span>{ value.content }</span>
+                 </li>
+               }
+        else if(value.from == "teacher"){
+        if(value.status == "reject") {
+            return  <li>
+                        <div className="content">
+                          <span>{ value.nick }( { value.commentator.role } { value.commentator.nick } ):</span>
+                          <span>{ value.time }</span>
+                        </div>
+                        <span>{ value.content}</span><br />
+                        <span className="red">( 消息被退回，退回原因:{value.reason} )</span>
+                    </li>
+          }
+          else if(value.status == 'unrevised') {
+            return  <li>
+                        <div className="content">
+                          <span>{ value.nick }( {value.commentator.role}{value.commentator.nick}):</span>
+                          <span className="red" onClick={() => this.handleTuiHui(value.id)}>退回</span>
+                        </div>
+                        <span>{ value.content }</span>
+                    </li>
+          }
+        }
+      })
+      return rightList;
   }
   render() {
-    const {item} = this.props;
-     const date=new Date(1533362538734).toLocaleDateString();
     return (
       <div className="rightList">
             <ul className="detail">
-              <li>冰雪mid：{item.author.mid}<span className="right">{date}</span><p>这个我不会</p></li>
-              <li>小x老师 (点评老师 白帆)：<span className="right">{date}</span><p>光影应该这样<br/><span className="message">(消息被退回，退回原因：点评太简单)</span></p></li>
-              <li>小x老师 (代课老师 海波)：<p>光影应该这样处理<span className="right">退回</span></p></li>
+                {this.renderRightList()}
             </ul>
       </div>
       );

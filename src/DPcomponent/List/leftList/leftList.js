@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import { Switch } from 'antd';
 import './leftList.css';
-function onChange(checked) {
-  console.log(`switch to ${checked}`);
-}
+
 export default class LeftList extends Component {
   render() {
     const {item} = this.props;
-    console.log(item);
     const date=new Date(1533362538734).toLocaleDateString();
     return (
       <div className="LeftList">
@@ -23,7 +20,7 @@ export default class LeftList extends Component {
             </p>
         </div>
         <div>
-          佳作:<Switch Checked onChange={onChange} />
+          佳作:<Switch Checked />
         </div>
       </div>
       );

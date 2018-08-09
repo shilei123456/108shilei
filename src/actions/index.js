@@ -81,3 +81,48 @@ export function fetchDianPingInfo(token,isReviewed) {
       }
     }
 }
+export function fetchDianPingInfoMyHistory(token,isReviewed) {
+    return {
+      SERVER_API: {
+        type: ActionTypes.FETCH_DianPing_MyHistory_INFO,
+        endpoint: '/getHomeWork',
+        params: {
+            token,
+            isReviewed
+        },
+        normailzerFun:response=> normalize(response.data, schemes.HOMEWORKLIST)
+      }
+    }
+}
+export function fetchDianPingInfoAllWei(token,isReviewed) {
+    return {
+      SERVER_API: {
+        type: ActionTypes.FETCH_DianPing_INFO,
+        endpoint: '/getHomeWork',
+        params: {
+            token,
+            isReviewed
+        },
+        normailzerFun:response=> normalize(response.data, schemes.HOMEWORKLIST)
+      }
+    }
+}
+export function fetchDianPingInfoAllYi(token,isReviewed) {
+    return {
+      SERVER_API: {
+        type: ActionTypes.FETCH_DianPing_INFO,
+        endpoint: '/getHomeWork',
+        params: {
+            token,
+            isReviewed
+        },
+        normailzerFun:response=> normalize(response.data, schemes.HOMEWORKLIST)
+      }
+    }
+}
+export default function handleChangeTuiHui(id){
+  return {
+    type:ActionTypes.CHANGE_REJECT_STATUS,
+    id,
+  }
+}

@@ -5,7 +5,11 @@ import { Provider } from 'react-redux';
 import serverApi from  './middleware/serverApi.js';
 import thunk from 'redux-thunk';
 // import Routes from './routes';
-import DianPing from './container/DianPing.js';
+// import DianPing from './container/DianPing.js';
+import ZuJian from './container/ZuJian.js'
+//import Dialog from './container/Dialog.js'
+//import Progress from './container/Progress.js'
+//import Switch from './container/Switch.js'
 import rootReducer  from './reducers';
 import { createLogger } from 'redux-logger';  
 const logger = createLogger();
@@ -19,7 +23,7 @@ export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <DianPing />
+         <ZuJian />
       </Provider>
     );
   }

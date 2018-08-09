@@ -75,12 +75,24 @@ function teacher (state = {},action){
 }
 function comments (state = {},action){
   switch(action.type){
-    case ActionTypes.FETCH_DianPing_INFO: {
+    case `${ActionTypes.FETCH_DianPing_INFO}_SUC`: {
       const entities =  action.response.entities
       return {
         ...state,
         ...entities.comments
-      };
+      };      
+    }
+    
+    case ActionTypes.CHANGE_REJECT_STATUS:{ 
+      const newState =  {
+        ...state,
+        [action.id]: {
+          ...state[action.id],
+          status: 'reject',
+          reason: '评价太简单'
+        }
+      }
+      return newState
     }
     default:
       return state;
@@ -100,7 +112,6 @@ function homeworkList (state = {},action){
       return state;
   }
 }
-
 // function students(state = {}, action){
 //   switch(action.type){
 //     case `${ActionTypes.FETCH_STUDENT_LIST}_SUC`: {

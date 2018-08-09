@@ -20,3 +20,6 @@ export const FETCH_SATIFY_INFO = 'FETCH_SATIFY_INFO';
 export const FETCH_SATIFY_INFO_SUC = 'FETCH_SATIFY_INFO_SUC';
 export const FETCH_DianPing_INFO = 'FETCH_DianPing_INFO';
 export const FETCH_DianPing_INFO_SUC = 'FETCH_DianPing_INFO_SUC';
+export const FETCH_DianPing_MyHistory_INFO = 'FETCH_DianPing_MyHistory_INFO';
+export const FETCH_DianPing_MyHistory_INFO_SUC = 'FETCH_DianPing_MyHistory_INFO_SUC';
+export const CHANGE_REJECT_STATUS = 'CHANGE_REJECT_STATUS';
