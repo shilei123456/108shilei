@@ -6,7 +6,7 @@ export default class Switch extends Component {
     }
     handleShowActionSheet=()=>{
         this.setState({
-            isActionSheetActive:true,
+            isActionSheetActive:!this.state.isActionSheetActive,
         })
     }
     render(){

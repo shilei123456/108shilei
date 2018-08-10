@@ -3,6 +3,7 @@ import ProgressComponent from '../Mycomponent/Progress/progressComponent.js';
 export default class ZuJian extends Component {
     state={
         isActionSheetActive:false,
+        defaultValue:'80%'
     }
     handleShowActionSheet=()=>{
         this.setState({
@@ -15,12 +16,7 @@ export default class ZuJian extends Component {
               <div onClick={this.handleShowActionSheet}>上传</div><br />
               <ProgressComponent 
                isActive={this.state.isActionSheetActive}
-               /><br/>
-               <ProgressComponent 
-               isActive={this.state.isActionSheetActive}
-               /><br/>
-               <ProgressComponent 
-               isActive={this.state.isActionSheetActive}
+               value={this.state.defaultValue}
                />
             </div>
             

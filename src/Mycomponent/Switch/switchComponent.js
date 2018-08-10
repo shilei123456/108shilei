@@ -4,9 +4,6 @@ export default class switchComponent extends Component {
     static defaultProps={
         isActive:false,
     } 
-    handleAction=()=>{
-      const {onhandleSwitch}  = this.props
-    }
     getMaskClassName = ()=>{
         if(!this.props.isActive){
             return 'mask showMask'
@@ -14,10 +11,17 @@ export default class switchComponent extends Component {
             return 'mask hideMask'
         }
     }
+    getActionsheetCtn = ()=>{
+        if(!this.props.isActive){
+            return 'actionsheetCtn'
+        }else{
+            return 'actionsheetCtn1'
+        }
+    }
     render(){
          const {isActive}=this.props;
         return(
-            <div className="actionsheetCtn" onClick={this.handleAction}>
+            <div className={this.getActionsheetCtn()} onClick={this.props.onhandleSwitch}>
               <div className={this.getMaskClassName()} ></div>
             </div>
         );

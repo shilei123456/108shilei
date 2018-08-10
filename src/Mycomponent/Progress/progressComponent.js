@@ -7,16 +7,20 @@ export default class ProgressComponent extends Component {
     }
     getMaskClassName = ()=>{
         if(!this.props.isActive){
-            return 'd'
+            return 'di'
         }else{
             return 'di'
         }
     }
+   handleStart(e){
+       
+    }
     render(){
+        const {value} = this.props;
         return(
             <div className="actionsheetCtn">
-              <div className={this.getMaskClassName()}>
-                <span></span>
+              <div className={this.getMaskClassName()} onTouchEnd={this.handleStart}>
+                <span style={{width:`${this.props.value}`}}></span>
               </div>
             </div>
         );

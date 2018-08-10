@@ -4,15 +4,10 @@
     overflow: hidden;
     background: lightblue
 }
-.d{
-    width: 300px;
-    height: 5px;
-    overflow: hidden;
-    background: lightblue
-}
+
 .di span{
     display: inline-block;
-    width: 100%;
+    width: 50%;
     height: 30px;       
     background: yellow;    
     animation:load 3s ease-in;
@@ -30,16 +25,7 @@
     45%{
         width: 45%;
     }
-    60%{
-        width:60%;
-    }
-    75%{
-        width: 75%;
-    }
-    90%{
-        width: 90%;
-    }
-    100%{
-        width: 100%;
+    50%{
+        width:50%;
     }
 }

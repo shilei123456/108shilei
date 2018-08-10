@@ -5,7 +5,16 @@
     width: 65px;
     height: 30px;
     border-radius: 15px;
-    background: lightslategrey;
+    background: black;
+}
+.actionsheetCtn1{
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 65px;
+    height: 30px;
+    border-radius: 15px;
+    background: lightblue;
 }
 .mask{
     position: absolute;
@@ -22,4 +31,5 @@
 }
 .hideMask{
     transform: translateX(35px);
+    opacity: 0.5
 }
