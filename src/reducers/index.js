@@ -6,6 +6,7 @@ import SKmessage from './skmessage.js';
 import SatifyList from './satify.js';
 import DianPing from './dianping.js'
 import entities from './entities.js';
+import QXmessage from './quanxian.js';
 export default combineReducers({
   entities,
   MessageList,
@@ -13,6 +14,7 @@ export default combineReducers({
   DAmessage,
   SKmessage,
   SatifyList,
-  DianPing
+  DianPing,
+  QXmessage
 });
 

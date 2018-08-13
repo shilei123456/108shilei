@@ -8,8 +8,9 @@ import thunk from 'redux-thunk';
 // import DianPing from './container/DianPing.js';
 //import ZuJian from './container/ZuJian.js'     //组件一
 //import Dialog from './container/Dialog.js'     //组件二
-import Progress from './container/Progress.js' //组件三
+//import Progress from './container/Progress.js' //组件三
 //import Switch from './container/Switch.js'       //组件五
+import QuanXian from './container/QuanXian.js'
 import rootReducer  from './reducers';
 import { createLogger } from 'redux-logger';  
 const logger = createLogger();
@@ -24,7 +25,7 @@ export default class App extends Component {
     return (
       <Provider store={store}>
          <div>
-          <Progress />
+          <QuanXian />
          </div>
       </Provider>
     );

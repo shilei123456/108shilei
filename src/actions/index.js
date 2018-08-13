@@ -126,3 +126,9 @@ export default function handleChangeTuiHui(id){
     id,
   }
 }
+export  function fetchQuanXianInfo(text){
+  return {
+    type:"QUANXIAN_ADD_ITEM",
+    text
+  }
+}

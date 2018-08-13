@@ -23,3 +23,4 @@ export const FETCH_DianPing_INFO_SUC = 'FETCH_DianPing_INFO_SUC';
 export const FETCH_DianPing_MyHistory_INFO = 'FETCH_DianPing_MyHistory_INFO';
 export const FETCH_DianPing_MyHistory_INFO_SUC = 'FETCH_DianPing_MyHistory_INFO_SUC';
 export const CHANGE_REJECT_STATUS = 'CHANGE_REJECT_STATUS';
+export const QUANXIAN_ADD_ITEM = 'QUANXIAN_ADD_ITEM';
