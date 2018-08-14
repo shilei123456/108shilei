@@ -22,7 +22,7 @@ class  QuanXian extends Component{
         return(
             <div style={{background:'lightblue'}}>
                <List handleShow={this.onhandleShow}/>
-               <TabList isShow={this.state.isShow} QXmessage={this.props.QXmessage}/>
+               <TabList isShow={this.state.isShow} QXmessage={this.props.QXmessage} handleShow={this.onhandleShow}/>
             </div>
         );
     }

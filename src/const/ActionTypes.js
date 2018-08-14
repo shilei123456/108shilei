@@ -24,3 +24,6 @@ export const FETCH_DianPing_MyHistory_INFO = 'FETCH_DianPing_MyHistory_INFO';
 export const FETCH_DianPing_MyHistory_INFO_SUC = 'FETCH_DianPing_MyHistory_INFO_SUC';
 export const CHANGE_REJECT_STATUS = 'CHANGE_REJECT_STATUS';
 export const QUANXIAN_ADD_ITEM = 'QUANXIAN_ADD_ITEM';
+export const CHANGE_INDEX = 'CHANGE_INDEX';
+export const FETCH_GITHUB_LEFTSEACH_FAI='FETCH_GITHUB_LEFTSEACH_FAI';
+export const FETCH_GITHUB_DELETE_FAI='FETCH_GITHUB_DELETE_FAI';

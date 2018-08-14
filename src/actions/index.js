@@ -68,6 +68,19 @@ export function fetchSeach(value){
     value
   }
 }
+export function fetchLeftSeach(value){
+  return {
+    type:ActionTypes.FETCH_GITHUB_LEFTSEACH_FAI,
+    value
+  }
+}
+export function fetchDelete(value,xiabiao){
+  return {
+    type:ActionTypes.FETCH_GITHUB_DELETE_FAI,
+    value,
+    xiabiao
+  }
+}
 export function fetchDianPingInfo(token,isReviewed) {
     return {
       SERVER_API: {
@@ -129,6 +142,13 @@ export default function handleChangeTuiHui(id){
 export  function fetchQuanXianInfo(text){
   return {
     type:"QUANXIAN_ADD_ITEM",
+    text
+  }
+}
+export  function fetchIndexInfo(name,text){
+  return {
+    type:"CHANGE_INDEX",
+    name,
     text
   }
 }

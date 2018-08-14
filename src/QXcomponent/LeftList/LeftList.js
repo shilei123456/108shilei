@@ -2,15 +2,16 @@ import React, { Component } from 'react';
 import { Button } from 'antd';
 import './LeftList.css';
  export default class LeftList extends Component{ 
+     handleFindIndex2=()=>{
+     const {onhandleIndex,item,index} = this.props;
+     onhandleIndex && onhandleIndex(item.name,item.mid,index);
+   }
     render(){   
-        return(
-            this.props.QXmessage.initialLeftState.map((item,idx)=>{
-              return (
+        const {item} = this.props;
+        return(        
                 <div className="btnList">
-                  <Button>{item.name} mid:{item.mid}</Button>
+                  <Button onClick={this.handleFindIndex2}>{item.name} mid:{item.mid}</Button>
                 </div>
-             )            
-         })
         );
        
     }
