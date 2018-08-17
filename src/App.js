@@ -10,7 +10,8 @@ import thunk from 'redux-thunk';
 //import Dialog from './container/Dialog.js'     //组件二
 //import Progress from './container/Progress.js' //组件三
 //import Switch from './container/Switch.js'       //组件五
-import QuanXian from './container/QuanXian.js'
+//import QuanXian from './container/QuanXian.js'
+import GameHome from './container/GameHome.js'
 import rootReducer  from './reducers';
 import { createLogger } from 'redux-logger';  
 const logger = createLogger();
@@ -25,7 +26,7 @@ export default class App extends Component {
     return (
       <Provider store={store}>
          <div>
-          <QuanXian />
+          <GameHome />
          </div>
       </Provider>
     );

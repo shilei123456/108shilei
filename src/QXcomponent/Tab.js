@@ -8,6 +8,22 @@ import RightList from './RightList/RightList.js';
 import LeftList from './LeftList/LeftList.js';
 const Search = Input.Search;
 const TreeNode = Tree.TreeNode;
+
+function getChild(data) {
+  return (
+    <TreeNode title={data.title}>
+      {
+        Array.isArray(data.child) ? data.child.map(item => {
+          if (Array.isArray(item.child)) {
+            return getChild(item)
+          } else {
+            return <TreeNode title={item.title} />
+          }
+        }) : null
+      }
+    </TreeNode>
+  )
+}
 class  TabList extends Component{
  state={
         selectedKey:[],
@@ -71,7 +87,22 @@ handleLeftItem=()=>{
                      )            
              })
 }
+// getChildens=(data)=> {
+//   if(Array.isArray(data.child)) {
+//     return data.child.map(item => {
+//       if(Array.isArray(item.child)) {
+//         return getChildens(item)
+//       } else {
+//         return <TreeNode title={item.title} key="0-0-0-0-0" />
+//       }
+//     })
+//   } else {
+//     return  <TreeNode title={data.title} key="0-0-0-0-0" />
+//   }
+// }
 renderdefault=()=>{
+
+  console.log(getChild(this.props.entities.treeData))
           if(this.props.isShow){
                 return null;
             }else{
@@ -98,20 +129,7 @@ renderdefault=()=>{
                         defaultExpandedKeys={['0-0-0']}
                         onSelect={this.onSelect}
                     >
-                        <TreeNode title="所有部门" key="0-0">
-                            <TreeNode title="爱启迪集团" key="0-0-0">
-                              <TreeNode title="广州分公司" key="0-0-0-0" onClick={this.handleItem()}>
-                                <TreeNode title="总经办" key="0-0-0-0-0" />
-                                <TreeNode title="财务部" key="0-0-0-0-1" />
-                                <TreeNode title="工程部" key="0-0-0-0-2" />
-                                <TreeNode title="产品科研部" key="0-0-0-0-0">
-                                    <TreeNode title="开发一组" key="0-0-0-0-0-1" />
-                                    <TreeNode title="开发二组" key="0-0-0-0-0-2" />
-                                    <TreeNode title="测试组" key="0-0-0-0-0-3" />
-                                </TreeNode>
-                              </TreeNode>
-                            </TreeNode> 
-                        </TreeNode>
+                      {getChild(this.props.entities.treeData)}
                     </Tree>
                 </Col>
                 <Col className="col" span={8}>
@@ -130,7 +148,8 @@ renderdefault=()=>{
   }
  }
     render(){    
-        const { isShow,QXmessage }=this.props;
+        const { isShow,QXmessage,entities }=this.props;
+        console.log(this.props);
         return(
            <div>
               {this.renderdefault()}
@@ -140,8 +159,8 @@ renderdefault=()=>{
     }
 }
 function mapStateToProps(state,ownProps){
-  const {QXmessage} = state;
-  return {QXmessage};
+  const {QXmessage,entities} = state;
+  return {QXmessage,entities};
 }
 const mapDispatchToProps = dispatch => {
   return {
