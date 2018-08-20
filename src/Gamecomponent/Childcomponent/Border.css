@@ -1,8 +1,16 @@
 .content{
     width: 500px;
     height: 500px;
-    background: gray;
+    background: hotpink;
     margin: 0 auto;
-    opacity: 0.4;
+    opacity: 0.5;
     border-radius: 10px;
+}
+@media screen and (max-width: 415px) {
+    .content{ 
+        width: 350px;
+        height: 350px;
+        margin: 0 auto;
+        margin-top: 5px;
+     }
 }

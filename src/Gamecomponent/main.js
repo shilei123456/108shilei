@@ -3,6 +3,7 @@ import './main.css'
 import Item from './Childcomponent/Item.js'
 import Border from './Childcomponent/Border.js'
 import {connect} from 'react-redux'
+import {  Button, Input  } from 'antd';
 import { bindActionCreators } from 'redux'
 import * as actionCreators from '../actions'
  class MainComponent extends Component{ 
@@ -11,26 +12,6 @@ import * as actionCreators from '../actions'
         b:''
      }
       componentDidMount(){
-        //    const { GameMessage }= this.props
-        // for(let i=0; i<4; i++){
-        //     for(let j=0; j<3; j++){
-        //         if(GameMessage.GameData[i][j] !==0 && GameMessage.GameData[i][j+1] !==0 && GameMessage.GameData[i][j] !==GameMessage.GameData[i][j+1]){
-        //            this.state.a=Number(this.state.a)+1
-        //            console.log( this.state.a)
-        //         }
-        //     }
-        // }
-        // for(let i=0; i<3; i++){
-        //     for(let j=0; j<4; j++){
-        //         if(GameMessage.GameData[i][j] !==0 && GameMessage.GameData[i+1][j] !==0 && GameMessage.GameData[i][j] !==GameMessage.GameData[i+1][j]){
-        //            this.state.b=this.state.b+1
-        //         }
-        //     }
-        // }
-        // if(this.state.a==12 && this.state.b==12){
-        //     alert("Game over")
-        //     this.onhandleRestart
-        // }
        const {Actions}=this.props;
        function number(){
                     let round = Math.ceil(Math.random()*4);
@@ -64,10 +45,6 @@ import * as actionCreators from '../actions'
                                 Math.floor(Math.random()*4),
                                 Math.floor(Math.random()*4),
                                 number())
-                        // function aa(){
-                        //     <audio src="" />
-                        // }
-                        //  aa()
                         break;
                     case 38:
                     Actions.fetchUpCureInfo(
@@ -107,13 +84,61 @@ import * as actionCreators from '../actions'
                                 number(),
                                 number(),0)
     }
+    //手机版
+   handleBtn=(event)=>{
+         const {Actions}=this.props;
+          function number(){
+                    let round = Math.ceil(Math.random()*4);
+                        if(round%2==0){
+                            return round;
+                        }else{
+                            return round=round+1;
+                        }
+                    }
+        let v = Number(event.target.value);
+        switch(v){
+                    case 37:
+                    Actions.fetchLeftCureInfo(
+                                Math.floor(Math.random()*4),
+                                Math.floor(Math.random()*4),
+                                number())
+                        break;
+                    case 38:
+                    Actions.fetchUpCureInfo(
+                                Math.floor(Math.random()*4),
+                                Math.floor(Math.random()*4),
+                                number())
+                         break;
+                    case 39:
+                   Actions.fetchRightCureInfo(
+                                Math.floor(Math.random()*4),
+                                Math.floor(Math.random()*4),
+                                number())
+                       break;
+                    case 40:
+                   Actions.fetchDownCureInfo(
+                                Math.floor(Math.random()*4),
+                                Math.floor(Math.random()*4),
+                                number())
+                        break;
+                    }
+    }
     render(){   
         const { GameMessage }= this.props
         return(
+         <div>
             <div className="main">
                  <Item onhandleRestart={this.handleRestart} GameMessage={GameMessage} />
                  <Border GameMessage={GameMessage} handleRestart={this.handleRestart}/>
             </div>
+            <div className="main1">
+              <div className="fangxiang">
+                    <Button  onClick={this.handleBtn} value="38" style={{float:"left",margin:"-10px 0 0 0"}}>上</Button><br />
+                    <Button  onClick={this.handleBtn} value="37" style={{float:"left",margin:"17px 0 0 -130px"}}>左</Button><Button onClick={this.handleBtn} value="39" style={{position:"absolute",float:"left", margin:"17px 0 0 2px"}}>右</Button><br /> 
+                    <Button  onClick={this.handleBtn} value="40" style={{float:"left",margin:"40px 0 0 0"}}>下</Button>
+              </div>
+            </div>
+          </div>
         );
     }
 }

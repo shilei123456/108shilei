@@ -4,3 +4,29 @@
     background: palegoldenrod;
     height: 620px;
 }
+@media screen and (min-width: 760px) {
+    .fangxiang{
+     display: none
+    }
+}
+@media screen and (max-width: 415px) {
+     .main{ 
+     width: 100%;
+     height: auto;
+     }
+     .main1{
+         width: 16%;
+         height: auto;
+         margin: 0 auto;
+         padding-top: 15px;
+     }
+    .fangxiang{
+        margin: 0 auto;
+        width: 100%;
+        height: 140px;
+    }
+    .fangxiang Button{
+        width: 65px;
+        height: 35px
+    }
+}

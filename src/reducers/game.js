@@ -65,6 +65,7 @@ export default function GameMessage(state=initialMessage,action){
               }
               key--;
             }
+             
             for(let i=0;i<3;i++){
                   for(let j=0;j<4;j++){
                       if(state.GameData[i][j] !==0 && state.GameData[i][j]===state.GameData[i+1][j]){
@@ -72,11 +73,26 @@ export default function GameMessage(state=initialMessage,action){
                                 state.GameData[i+1][j]=0;
                                 state.ScoreData=state.ScoreData+(state.GameData[i][j])
                               }
-                      if(state.GameData[x0][y0] === 0){
-                          state.GameData[x0][y0] = num;
-                      }  
               }
             }
+             function cc(){
+              let m=Math.floor(Math.random()*4);
+              let n=Math.floor(Math.random()*4);
+              if(state.GameData[m][n]===0){
+                state.GameData[m][n]=num
+              }else{
+                  cc();
+                }
+            }
+             cc();
+            for(let i=0;i<3;i++){
+                  for(let j=0;j<4;j++){
+                    if(state.GameData[i][j]===0 && state.GameData[i+1][j]!==0){
+                        state.GameData[i][j]=state.GameData[i+1][j];
+                        state.GameData[i+1][j]=0;
+                    }
+                  }
+              }
               return {...state}
         case DOWN_GAME:
               let x1=action.value1;
@@ -103,9 +119,27 @@ export default function GameMessage(state=initialMessage,action){
                           }
                     }
                   }
-              if(state.GameData[x1][y1] === 0){
-                state.GameData[x1][y1] = num1;
-              }   
+              // if(state.GameData[x1][y1] === 0){
+              //   state.GameData[x1][y1] = num1;
+              // }  
+              function cc(){
+                let m=Math.floor(Math.random()*4);
+                let n=Math.floor(Math.random()*4);
+                if(state.GameData[m][n]===0){
+                  state.GameData[m][n]=num1
+                }else{
+                  cc()
+                }
+              }
+              cc()  
+              for(let i=3;i>0;i--){
+                    for(let j=0;j<4;j++){
+                      if(state.GameData[i][j]===0 && state.GameData[i-1][j]!==0){
+                          state.GameData[i][j]=state.GameData[i-1][j];
+                          state.GameData[i-1][j]=0;
+                      }
+                    }
+                }
               return {...state}
           case LEFT_GAME:
                 let x2=action.value1;
@@ -132,9 +166,27 @@ export default function GameMessage(state=initialMessage,action){
                         }
                       }
                     }
-                if(state.GameData[x2][y2] === 0){
-                 state.GameData[x2][y2] = num2;
-                }  
+                // if(state.GameData[x2][y2] === 0){
+                //  state.GameData[x2][y2] = num2;
+                // }  
+                 function cc(){
+                    let m=Math.floor(Math.random()*4);
+                    let n=Math.floor(Math.random()*4);
+                    if(state.GameData[m][n]===0){
+                      state.GameData[m][n]=num2
+                    }else{
+                      cc()
+                    }
+                  }
+                  cc()
+                for(let i=0;i<4;i++){
+                      for(let j=0;j<3;j++){
+                        if(state.GameData[i][j]===0 && state.GameData[i][j+1]!==0){
+                            state.GameData[i][j]=state.GameData[i][j+1];
+                            state.GameData[i][j+1]=0;
+                        }
+                      }
+                  }
                 return {...state}
             case RIGHT_GAME:
                 let x3=action.value1;
@@ -161,9 +213,27 @@ export default function GameMessage(state=initialMessage,action){
                         }
                       }
                     }
-                 if(state.GameData[x3][y3] === 0){
-                  state.GameData[x3][y3] = num3;
-                 }
+                //  if(state.GameData[x3][y3] === 0){
+                //   state.GameData[x3][y3] = num3;
+                //  }
+                 function cc(){
+                  let m=Math.floor(Math.random()*4);
+                  let n=Math.floor(Math.random()*4);
+                  if(state.GameData[m][n]===0){
+                    state.GameData[m][n]=num3
+                  }else{
+                    cc()
+                  }
+                }
+                cc()
+                  for(let i=0;i<4;i++){
+                      for(let j=3;j>0;j--){
+                        if(state.GameData[i][j]===0 && state.GameData[i][j-1]!==0){
+                            state.GameData[i][j]=state.GameData[i][j-1];
+                            state.GameData[i][j-1]=0;
+                        }
+                      }
+                  }
                 return {...state}
         default:
         return state;
