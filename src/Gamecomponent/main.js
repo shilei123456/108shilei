@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import './main.css'
 import Item from './Childcomponent/Item.js'
 import Border from './Childcomponent/Border.js'
+import BGM from 'react-awesome-snippets-bgm';
+import bgmp3 from '../source/audio/月半小夜曲.mp3';
+import image from '../source/10.jpg'
 import {connect} from 'react-redux'
 import {  Button, Input  } from 'antd';
 import { bindActionCreators } from 'redux'
@@ -24,6 +27,7 @@ import * as actionCreators from '../actions'
                                 Math.floor(Math.random()*4),
                                 number(),
                                 number())
+    //   alert("游戏规则:当任意一个方框内出现2048或总分大于20000分即为过关")
     }
     //当是电脑操作的时候，判断是否按了上下左右键，分别触发不同的事件
     componentWillMount(){
@@ -105,7 +109,9 @@ import * as actionCreators from '../actions'
     render(){   
         const { GameMessage }= this.props
         return(
+         <div className="maxbg">
          <div>
+          </div>
             <div className="main">
                  <Item onhandleRestart={this.handleRestart} GameMessage={GameMessage} />
                  <Border GameMessage={GameMessage} handleRestart={this.handleRestart}/>

@@ -6,6 +6,7 @@
 .col2 Button{
     width: 100px;
     height: 45px;
+    border-radius: 10px;
     text-align: center;
     float: right;
     margin-right: 50px;
@@ -19,6 +20,7 @@
     width: 100px;
     height: 45px;
     text-align: center;
+    border-radius: 10px;
     float: left;
     margin-left: 520px;
     margin-top: -52px;

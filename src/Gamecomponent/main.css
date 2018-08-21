@@ -1,32 +1,39 @@
 .main{
     width: 60%;
     margin: 0 auto;
-    background: palegoldenrod;
-    height: 620px;
+}
+.maxbg{
+  background: url(../source/12.jpg) no-repeat center center fixed;
+  background-size: cover;
+  height: auto;
 }
 .upBtn{
     float: left;
-    margin: -10px 0 0 0
+    margin: -5px 0 0 0;
+    border-radius: 10px;
 }
 .leftBtn{
     float: left;
-    margin: 17px 0 0 -130px
+    margin: 17px 0 0 -130px;
+    border-radius: 10px;
 }
 .rightBtn{
     position: absolute;
     float: left;
-    margin: 17px 0 0 2px
+    margin: 17px 0 0 2px;
+    border-radius: 10px;
 }
 .downBtn{
     float: left;
-    margin: 40px 0 0 0;
+    margin: 37px 0 0 0;
+    border-radius: 10px;
 }
-@media screen and (min-width: 760px) {
+@media screen and (min-width: 770px) {
     .fangxiang{
      display: none
     }
 }
-@media screen and (max-width: 415px) {
+@media screen and (max-width: 769px) {
      .main{ 
      width: 100%;
      height: auto;
@@ -46,4 +53,40 @@
         width: 65px;
         height: 35px
     }
+}
+@media screen and (height:640px) {
+ .maxbg{
+      height: 640px;
+  }
+}
+@media screen and (height:731px) {
+  .maxbg{
+      height: 731px;
+  }
+}
+@media screen and (height:823px) {
+  .maxbg{
+      height: 823px;
+  }
+  .main1{
+      margin-top: 23px;
+  }
+}
+@media screen and (height:812px) {
+  .maxbg{
+      height: 812px;
+  }
+  .main1{
+      margin-top: 23px;
+  }
+}
+@media screen and (width:414px) {
+  .maxbg{
+      height: 735px;
+  }
+}
+@media screen and (width:768px) {
+  .maxbg{
+      height: 1024px;
+  }
 }

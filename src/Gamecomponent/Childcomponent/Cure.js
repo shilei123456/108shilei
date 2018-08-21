@@ -27,8 +27,8 @@ import cureColor from '../../configColor.json';
       }
     render(){  
         const {item1,handleRestart,GameMessage} = this.props
-       
         const style1=Object.assign(cureColor,this.getCureColor(item1))
+        console.log(style1)
         const currentColor=style1.style[item1] 
             return (
                  <div style={this.getCureColor(item1)} className="cure" ><p className={this.getTextColor(item1)}>{item1}</p></div>

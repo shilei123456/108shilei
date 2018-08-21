@@ -7,7 +7,7 @@
     color: goldenrod;
     background: goldenrod;
     border-radius: 10px;
-    transition:background .3s ease-in;
+    transition:background .4s ease-in;
 }
 .text0{
      text-align: center;
@@ -30,5 +30,6 @@
     text-align: center;
     line-height: 63px;
     font-size: 24px;
+    transform: rotateX(0);
 }
 }
