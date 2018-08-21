@@ -20,18 +20,18 @@ export default class Border extends Component{
     render(){    
         const {item1, GameMessage, handleRestart}= this.props
         //判断小方块内是否填满数字了，如果填满游戏结束
-        var GameOverX = 0;
-        var GameOverY = 0;
-            for (var i = 0; i < 4; i++) {
-              for (var j = 0; j < 3; j++) {
+        let GameOverX = 0;
+        let GameOverY = 0;
+            for (let i = 0; i < 4; i++) {
+              for (let j = 0; j < 3; j++) {
                 if ((GameMessage.GameData[i][j] != 0) && (GameMessage.GameData[i][j + 1] != 0) && GameMessage.GameData[i][j] !== GameMessage.GameData[i][j + 1]) { 
                   GameOverX++;
                 }
               }
             }
 
-            for (var j = 0; j < 4; j++) {
-              for (var i = 0; i < 3; i++) {
+            for (let j = 0; j < 4; j++) {
+              for (let i = 0; i < 3; i++) {
                 if ((GameMessage.GameData[i][j] != 0) && (GameMessage.GameData[i + 1][j] != 0) && GameMessage.GameData[i][j] !==GameMessage.GameData[i + 1][j]) {
                   GameOverY++;
                 }
@@ -42,7 +42,6 @@ export default class Border extends Component{
               alert("通关失败，再接再厉，通关成功有彩蛋哦！请按重新开始或者退出游戏！！！")
               handleRestart()
             }
-          //判断结束
 
         return(
             <div className="content">

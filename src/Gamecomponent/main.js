@@ -7,10 +7,7 @@ import {  Button, Input  } from 'antd';
 import { bindActionCreators } from 'redux'
 import * as actionCreators from '../actions'
  class MainComponent extends Component{ 
-      state={
-        a:'',
-        b:''
-     }
+     //初始化 刚开始有两个带数字的小方块，每个数字对应一对(x,y)
       componentDidMount(){
        const {Actions}=this.props;
        function number(){
@@ -28,9 +25,10 @@ import * as actionCreators from '../actions'
                                 number(),
                                 number())
     }
+    //当是电脑操作的时候，判断是否按了上下左右键，分别触发不同的事件
     componentWillMount(){
          const {Actions}=this.props;
-          function number(){
+          function number(){           //随机产生的数字只能是2和4
                     let round = Math.ceil(Math.random()*4);
                         if(round%2==0){
                             return round;
@@ -38,35 +36,26 @@ import * as actionCreators from '../actions'
                             return round=round+1;
                         }
                     }
-         document.addEventListener('keydown',(e)=>{ 
+         document.addEventListener('keydown',(e)=>{  //键盘事件
+             let x=Math.floor(Math.random()*4)
+             let y=Math.floor(Math.random()*4)
                 switch(e.keyCode){
                     case 37:
-                    Actions.fetchLeftCureInfo(
-                                Math.floor(Math.random()*4),
-                                Math.floor(Math.random()*4),
-                                number())
+                        Actions.fetchLeftCureInfo(x, y, number())
                         break;
                     case 38:
-                    Actions.fetchUpCureInfo(
-                                Math.floor(Math.random()*4),
-                                Math.floor(Math.random()*4),
-                                number())
-                         break;
+                        Actions.fetchUpCureInfo(x, y, number())
+                        break;
                     case 39:
-                   Actions.fetchRightCureInfo(
-                                Math.floor(Math.random()*4),
-                                Math.floor(Math.random()*4),
-                                number())
-                       break;
+                        Actions.fetchRightCureInfo(x, y, number())
+                        break;
                     case 40:
-                   Actions.fetchDownCureInfo(
-                                Math.floor(Math.random()*4),
-                                Math.floor(Math.random()*4),
-                                number())
+                   Actions.fetchDownCureInfo(x, y, number())
                         break;
                     }
             })
     }
+    //当游戏失败，处理重新开始的函数
     handleRestart=()=>{
         const {Actions}=this.props;
        function number(){
@@ -84,7 +73,7 @@ import * as actionCreators from '../actions'
                                 number(),
                                 number(),0)
     }
-    //手机版
+    //手机端 点击四个按钮事件，当是电脑时，四个按钮隐藏
    handleBtn=(event)=>{
          const {Actions}=this.props;
           function number(){
@@ -96,30 +85,20 @@ import * as actionCreators from '../actions'
                         }
                     }
         let v = Number(event.target.value);
+        let x=Math.floor(Math.random()*4)
+        let y=Math.floor(Math.random()*4)
         switch(v){
                     case 37:
-                    Actions.fetchLeftCureInfo(
-                                Math.floor(Math.random()*4),
-                                Math.floor(Math.random()*4),
-                                number())
+                        Actions.fetchLeftCureInfo(x, y, number())
                         break;
                     case 38:
-                    Actions.fetchUpCureInfo(
-                                Math.floor(Math.random()*4),
-                                Math.floor(Math.random()*4),
-                                number())
-                         break;
+                        Actions.fetchUpCureInfo(x, y, number())
+                        break;
                     case 39:
-                   Actions.fetchRightCureInfo(
-                                Math.floor(Math.random()*4),
-                                Math.floor(Math.random()*4),
-                                number())
-                       break;
+                        Actions.fetchRightCureInfo(x, y, number())
+                        break;
                     case 40:
-                   Actions.fetchDownCureInfo(
-                                Math.floor(Math.random()*4),
-                                Math.floor(Math.random()*4),
-                                number())
+                        Actions.fetchDownCureInfo(x, y, number())
                         break;
                     }
     }
@@ -133,9 +112,10 @@ import * as actionCreators from '../actions'
             </div>
             <div className="main1">
               <div className="fangxiang">
-                    <Button  onClick={this.handleBtn} value="38" style={{float:"left",margin:"-10px 0 0 0"}}>上</Button><br />
-                    <Button  onClick={this.handleBtn} value="37" style={{float:"left",margin:"17px 0 0 -130px"}}>左</Button><Button onClick={this.handleBtn} value="39" style={{position:"absolute",float:"left", margin:"17px 0 0 2px"}}>右</Button><br /> 
-                    <Button  onClick={this.handleBtn} value="40" style={{float:"left",margin:"40px 0 0 0"}}>下</Button>
+                    <Button  onClick={this.handleBtn} value="38" className="upBtn">上</Button><br />
+                    <Button  onClick={this.handleBtn} value="37" className="leftBtn">左</Button>
+                    <Button  onClick={this.handleBtn} value="39" className="rightBtn">右</Button><br /> 
+                    <Button  onClick={this.handleBtn} value="40" className="downBtn">下</Button>
               </div>
             </div>
           </div>

@@ -13,6 +13,7 @@
 .col3{
     text-align: center;
     margin-left: 30px;
+    transform: scale(1.0)
 }
 .col4 Button{
     width: 100px;
@@ -24,17 +25,17 @@
 }
 .style1{
     color: black;
-    animation: bianhua 1s ease-in;
+    animation: donghua 1s ease-in;
     
 }
-@keyframes bianhua{
+@keyframes donghua{
     0%{
-        color: black;
+        color:black; 
         transform: scale(1.0);
     }
     50%{
-        color: yellow;
-        transform: scale(1.5);
+        color: yellowgreen;
+        transform: scale(1.7);
     }
     100%{
         color: black;

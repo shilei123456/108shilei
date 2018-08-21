@@ -3,11 +3,17 @@ import { Row, Col, Button  } from 'antd';
 import './Item.css'
 let timer;
 export default class Item extends Component{ 
+    //判断获取的值是否发生变化，给最高分加动画
     state = {
-        shouldAnimateDisappear: false
+        shouldAnimateDisappear: false,  //设置初始状态
+        x:''
     }
     componentWillReceiveProps(newProps) {
-        const { GameMessage } = newProps
+      const { GameMessage } = newProps
+      let x0= GameMessage.BestScore;
+      this.setState({
+          x : x0
+      })
         if (GameMessage.BestScore >0) {
             clearTimeout(timer)
             this.setState({
@@ -22,12 +28,11 @@ export default class Item extends Component{
     }
      getStyle=()=>{
           const { GameMessage } = this.props
-          console.log(GameMessage.BestScore)
-            if(GameMessage.BestScore !== 0){
+            if(GameMessage.BestScore !== 0 && GameMessage.BestScore-this.state.x !== 0){
                 if(this.state.shouldAnimateDisappear) {
                     return null
                 }
-                return "style1"
+                    return "style1"
             }
         }
     render(){   

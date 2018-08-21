@@ -19,21 +19,6 @@
     line-height: 100px;
     font-size: 24px;
     text-shadow: 5px 5px 5px #FF0000;
-    animation: bianhua 1s ease-in;
-}
-@keyframes bianhua{
-    0%{
-        color: black;
-       
-    }
-    50%{
-        color: yellow;
-       
-    }
-    100%{
-        color: black;
-       
-    }
 }
 @media screen and (max-width: 415px) {
     .cure{ 

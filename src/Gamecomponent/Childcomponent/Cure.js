@@ -2,18 +2,14 @@ import React, { Component } from 'react';
 import './Cure.css';
 import cureColor from '../../configColor.json';
  export default class Cure extends Component{ 
-     static initial={
-         cureColor:{
-             backgroundColor:'',
-             color:''
-         }
-     }
+     //根据不同的值，选取不同颜色
      getCureColor=(value=0)=>{
          return {
            backgroundColor:cureColor.style[value].background,
            color:cureColor.style[value].color
          }
      }
+     //方块里的数字样式
      getTextColor=(item1)=>{
          if(item1===0){
              return "text0"
@@ -21,6 +17,7 @@ import cureColor from '../../configColor.json';
              return "text"
          }
      }
+     //通关条件，方块内数字为2048或总分达到20000即为通关
       componentDidMount(){
         const {item1,handleRestart,GameMessage} = this.props
          if(item1===2048 || GameMessage.ScoreData>20000){

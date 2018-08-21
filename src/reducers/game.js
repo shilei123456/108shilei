@@ -10,6 +10,16 @@ const initialMessage={
    BestScore:0
 }
 export default function GameMessage(state=initialMessage,action){
+  //每按一次键产生一个随机数
+  function cc(arg){
+              let m=Math.floor(Math.random()*4);
+              let n=Math.floor(Math.random()*4);
+              if(state.GameData[m][n]===0){
+                state.GameData[m][n]=arg
+              }else{
+                  cc(arg);
+                }
+      }
   switch(action.type){
       case INIT_GAME:
           let i = action.value1;
@@ -54,6 +64,7 @@ export default function GameMessage(state=initialMessage,action){
             let y0=action.value2;
             let num=action.num;
             let key=3;
+            //遍历三次（每行每列一共就四个数）将所有不为零的数都放在最顶端
             while(key>0){
                 for(let i=0;i<3;i++){
                   for(let j=0;j<4;j++){
@@ -65,7 +76,7 @@ export default function GameMessage(state=initialMessage,action){
               }
               key--;
             }
-             
+             //将两个相邻并且相等的数相加，高位的置零
             for(let i=0;i<3;i++){
                   for(let j=0;j<4;j++){
                       if(state.GameData[i][j] !==0 && state.GameData[i][j]===state.GameData[i+1][j]){
@@ -73,18 +84,9 @@ export default function GameMessage(state=initialMessage,action){
                                 state.GameData[i+1][j]=0;
                                 state.ScoreData=state.ScoreData+(state.GameData[i][j])
                               }
-              }
+                       }
             }
-             function cc(){
-              let m=Math.floor(Math.random()*4);
-              let n=Math.floor(Math.random()*4);
-              if(state.GameData[m][n]===0){
-                state.GameData[m][n]=num
-              }else{
-                  cc();
-                }
-            }
-             cc();
+             //重新遍历将合并之后的数依次排在最顶端
             for(let i=0;i<3;i++){
                   for(let j=0;j<4;j++){
                     if(state.GameData[i][j]===0 && state.GameData[i+1][j]!==0){
@@ -93,6 +95,8 @@ export default function GameMessage(state=initialMessage,action){
                     }
                   }
               }
+               //执行产生随机数的的函数
+             cc(num);
               return {...state}
         case DOWN_GAME:
               let x1=action.value1;
@@ -119,19 +123,7 @@ export default function GameMessage(state=initialMessage,action){
                           }
                     }
                   }
-              // if(state.GameData[x1][y1] === 0){
-              //   state.GameData[x1][y1] = num1;
-              // }  
-              function cc(){
-                let m=Math.floor(Math.random()*4);
-                let n=Math.floor(Math.random()*4);
-                if(state.GameData[m][n]===0){
-                  state.GameData[m][n]=num1
-                }else{
-                  cc()
-                }
-              }
-              cc()  
+ 
               for(let i=3;i>0;i--){
                     for(let j=0;j<4;j++){
                       if(state.GameData[i][j]===0 && state.GameData[i-1][j]!==0){
@@ -140,6 +132,7 @@ export default function GameMessage(state=initialMessage,action){
                       }
                     }
                 }
+               cc(num1) 
               return {...state}
           case LEFT_GAME:
                 let x2=action.value1;
@@ -160,25 +153,13 @@ export default function GameMessage(state=initialMessage,action){
                  for(let i=0;i<4;i++){
                       for(let j=0;j<3;j++){
                         if(state.GameData[i][j] !==0 && state.GameData[i][j]===state.GameData[i][j+1]){
-                                                  state.GameData[i][j]=(state.GameData[i][j])*2;
-                                                  state.GameData[i][j+1]=0;
-                                                  state.ScoreData=state.ScoreData+(state.GameData[i][j])
+                            state.GameData[i][j]=(state.GameData[i][j])*2;
+                            state.GameData[i][j+1]=0;
+                            state.ScoreData=state.ScoreData+(state.GameData[i][j])
                         }
                       }
                     }
-                // if(state.GameData[x2][y2] === 0){
-                //  state.GameData[x2][y2] = num2;
-                // }  
-                 function cc(){
-                    let m=Math.floor(Math.random()*4);
-                    let n=Math.floor(Math.random()*4);
-                    if(state.GameData[m][n]===0){
-                      state.GameData[m][n]=num2
-                    }else{
-                      cc()
-                    }
-                  }
-                  cc()
+                 
                 for(let i=0;i<4;i++){
                       for(let j=0;j<3;j++){
                         if(state.GameData[i][j]===0 && state.GameData[i][j+1]!==0){
@@ -187,6 +168,7 @@ export default function GameMessage(state=initialMessage,action){
                         }
                       }
                   }
+               cc(num2)
                 return {...state}
             case RIGHT_GAME:
                 let x3=action.value1;
@@ -212,21 +194,8 @@ export default function GameMessage(state=initialMessage,action){
                           state.ScoreData=state.ScoreData+(state.GameData[i][j])
                         }
                       }
-                    }
-                //  if(state.GameData[x3][y3] === 0){
-                //   state.GameData[x3][y3] = num3;
-                //  }
-                 function cc(){
-                  let m=Math.floor(Math.random()*4);
-                  let n=Math.floor(Math.random()*4);
-                  if(state.GameData[m][n]===0){
-                    state.GameData[m][n]=num3
-                  }else{
-                    cc()
-                  }
                 }
-                cc()
-                  for(let i=0;i<4;i++){
+                 for(let i=0;i<4;i++){
                       for(let j=3;j>0;j--){
                         if(state.GameData[i][j]===0 && state.GameData[i][j-1]!==0){
                             state.GameData[i][j]=state.GameData[i][j-1];
@@ -234,6 +203,7 @@ export default function GameMessage(state=initialMessage,action){
                         }
                       }
                   }
+                 cc(num3)
                 return {...state}
         default:
         return state;

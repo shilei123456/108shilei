@@ -4,6 +4,23 @@
     background: palegoldenrod;
     height: 620px;
 }
+.upBtn{
+    float: left;
+    margin: -10px 0 0 0
+}
+.leftBtn{
+    float: left;
+    margin: 17px 0 0 -130px
+}
+.rightBtn{
+    position: absolute;
+    float: left;
+    margin: 17px 0 0 2px
+}
+.downBtn{
+    float: left;
+    margin: 40px 0 0 0;
+}
 @media screen and (min-width: 760px) {
     .fangxiang{
      display: none
