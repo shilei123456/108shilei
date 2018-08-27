@@ -4,7 +4,7 @@
     text-align: center
 }
 .col2 Button{
-    width: 100px;
+    width: 120px;
     height: 45px;
     border-radius: 10px;
     text-align: center;
@@ -25,11 +25,16 @@
     margin-left: 520px;
     margin-top: -52px;
 }
+.style0{
+     color: black;
+    display: inline;
+}
 .style1{
     color: black;
+    display: inline;
     animation: donghua 1s ease-in;
-    
 }
+
 @keyframes donghua{
     0%{
         color:black; 
@@ -46,16 +51,19 @@
 }
 @media screen and (max-width: 415px) {
     .col2 Button{
-     margin-top: 6px;
+        width: 135px;
+        height: 30px;
+        margin-top: 6px;
+        float: left;
     }
     .col3{
-    text-align: center;
-    margin-left: -15px;
-    margin-top: -30px;
+        display: none;
     }
     .col4 Button{
-    float: right;
-    margin-right: 35px;
-    margin-top: 5px;
-    }
+        width: 80px;
+        height: 25px;
+        float: right;
+        margin-right: 35px;
+        margin-top: -26px;
+        }
 }
